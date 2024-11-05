@@ -1,12 +1,16 @@
-### Especificação do Projeto: Sistema de Gerenciamento de Congressos Empresariais
+Aqui está a documentação atualizada, refletindo as novas diretrizes e expandindo os detalhes para o contexto de uma empresa de coordenação de eventos corporativos, conforme solicitado:
 
-#### 1. **Objetivo do Sistema**
-Sistema voltado para o gerenciamento de congressos empresariais, que visa facilitar a organização, o planejamento e a execução do evento corporativo. A proposta é oferecer uma plataforma, onde a equipe responsável por eventos consiga, entre outras coisa, cadastrar clientes e fornecedores, organizar a programação das atividades e manter o controle financeiro dos congressos.
+---
 
-#### 2. **Requisitos Funcionais**
+# Especificação do Projeto: Sistema de Gerenciamento de Congressos Empresariais
 
-##### 2.1. **Cadastro da Empresa**
-- **Descrição**: Permitir que a empresa registre suas informações básicas.
+## 1. Objetivo do Sistema
+O sistema de gerenciamento de congressos empresariais destina-se a facilitar a organização e a execução de eventos corporativos, como conferências, convenções e workshops. Ele oferece suporte para personalizar cada congresso de acordo com as necessidades dos clientes, permitindo um controle abrangente das atividades, da equipe e dos fornecedores. A proposta é oferecer uma plataforma onde a equipe de coordenação possa gerenciar clientes, fornecedores, programação de atividades e controle financeiro de maneira integrada e flexível.
+
+## 2. Requisitos Funcionais
+
+### 2.1. Cadastro da Empresa
+**Descrição**: Permitir que a empresa de eventos registre suas informações corporativas essenciais.
 - **Atributos**:
   - `nome`: Nome da empresa.
   - `CNPJ`: Cadastro Nacional da Pessoa Jurídica.
@@ -15,121 +19,123 @@ Sistema voltado para o gerenciamento de congressos empresariais, que visa facili
   - Criar, editar e visualizar informações da empresa.
   - Validar o CNPJ durante o cadastro.
 
-##### 2.2. **Gerenciamento de Clientes**
-- **Descrição**: Gerenciar informações dos clientes que contratam os serviços de congresso.
+### 2.2. Gerenciamento de Clientes
+**Descrição**: Gerenciar dados e preferências dos clientes empresariais, bem como histórico de interações.
 - **Atributos**:
   - `nome`: Nome da organização cliente.
-  - `setor`: Área de atuação da organização.
+  - `setor`: Setor de atuação.
   - `contato`: Nome e informações de contato do responsável.
-  - `especificações de pagamento`: Detalhes sobre o contrato e pagamentos.
+  - `valorContratado`: Valor acordado para o congresso.
 - **Funcionalidades**:
   - Cadastrar, editar e visualizar informações dos clientes.
-  - Gerar relatórios de clientes e suas interações.
+  - Gerar relatórios com histórico e perfil dos clientes.
 
-##### 2.3. **Cadastro de Congressos**
-- **Descrição**: Permitir o registro e gerenciamento de congressos.
+### 2.3. Cadastro e Gerenciamento de Congressos
+**Descrição**: Registrar e gerenciar informações dos congressos empresariais.
 - **Atributos**:
   - `cliente`: Referência ao cliente associado.
   - `data`: Data do evento.
   - `local`: Local onde o congresso será realizado.
-  - `lista de atividades`: Atividades programadas para o congresso.
-  - `informações de pagamento`: Detalhes financeiros do congresso.
+  - `atividades`: Lista de atividades programadas para o congresso.
+  - `valorContratado`: Valor acordado para o evento.
 - **Funcionalidades**:
   - Criar, editar e visualizar congressos.
   - Associar congressos a clientes e atividades.
 
-##### 2.4. **Atividades do Congresso**
-- **Descrição**: Gerenciar as atividades que ocorrerão durante o congresso.
+### 2.4. Gerenciamento das Atividades do Congresso
+**Descrição**: Gerenciar atividades como palestras, painéis, sessões de networking e workshops.
 - **Atributos**:
   - `data`: Data da atividade.
-  - `descrição`: Descrição da atividade.
+  - `descricao`: Descrição da atividade.
   - `local`: Local da atividade.
-  - `número esperado de participantes`: Estimativa de público.
-  - `duração prevista`: Tempo estimado para a atividade.
+  - `numParticipantes`: Número esperado de participantes.
+  - `duracao`: Duração estimada.
 - **Funcionalidades**:
-  - Adicionar, editar e remover atividades de um congresso.
-  - Associar atividades a membros da equipe responsáveis.
+  - Adicionar, editar e remover atividades.
+  - Associar atividades a profissionais da equipe responsáveis.
 
-##### 2.5. **Gerenciamento da Equipe**
-- **Descrição**: Controlar as informações dos membros da equipe que organizam o congresso.
+### 2.5. Gerenciamento da Equipe de Coordenação
+**Descrição**: Gerenciar dados dos profissionais responsáveis pela execução das atividades.
 - **Atributos**:
-  - `nome`: Nome do membro da equipe.
+  - `nome`: Nome do profissional.
   - `contato`: Informações de contato.
-  - `função`: Cargo ou função desempenhada.
-  - `remuneração`: Salário ou pagamento acordado.
+  - `funcao`: Cargo ou função desempenhada (e.g., Produtor, Coordenador Técnico).
+  - `remuneracao`: Valor de remuneração.
 - **Funcionalidades**:
-  - Cadastrar, editar e visualizar membros da equipe.
+  - Cadastrar, editar e visualizar dados dos membros da equipe.
   - Designar tarefas e registrar horas trabalhadas.
 
-##### 2.6. **Cadastro de Fornecedores**
-- **Descrição**: Gerenciar informações sobre fornecedores que prestam serviços para os congressos.
+### 2.6. Cadastro e Gerenciamento de Fornecedores
+**Descrição**: Controlar dados dos fornecedores de serviços como catering, audiovisual e segurança.
 - **Atributos**:
   - `nome`: Nome do fornecedor.
   - `CNPJ`: Cadastro do fornecedor.
-  - `endereço`: Localização do fornecedor.
-  - `histórico de colaboração`: Registro de interações anteriores.
+  - `endereco`: Localização do fornecedor.
+  - `historicoColaboracao`: Histórico de interações e avaliações.
 - **Funcionalidades**:
   - Cadastrar, editar e visualizar fornecedores.
-  - Avaliar o desempenho dos fornecedores com base em feedbacks.
+  - Avaliar desempenho dos fornecedores com base em feedbacks e histórico.
 
-##### 2.7. **Pacotes de Serviços**
-- **Descrição**: Criar pacotes de serviços que podem ser oferecidos aos clientes.
+### 2.7. Gerenciamento de Pacotes de Serviços
+**Descrição**: Criar pacotes de serviços personalizados para cada congresso.
 - **Atributos**:
-  - `nome do pacote`: Nome do pacote de serviços.
-  - `descrição`: Detalhes sobre o que está incluído no pacote.
-  - `lista de itens`: Serviços que compõem o pacote.
-  - `custo por pessoa/unidade`: Preço do pacote.
+  - `nomePacote`: Nome do pacote de serviços.
+  - `descricao`: Descrição detalhada do pacote.
+  - `itensServico`: Lista de itens inclusos.
+  - `custoPorUnidade`: Preço do pacote por pessoa ou unidade.
 - **Funcionalidades**:
   - Criar, editar e visualizar pacotes de serviços.
-  - Associar pacotes a congressos e clientes.
+  - Associar pacotes de serviços a clientes e congressos.
 
-##### 2.8. **Itens de Serviço**
-- **Descrição**: Gerenciar os itens individuais que compõem os pacotes de serviços.
+### 2.8. Gerenciamento de Itens de Serviço
+**Descrição**: Controlar itens específicos que compõem pacotes de serviços.
 - **Atributos**:
-  - `descrição`: Descrição do item de serviço.
-  - `categoria`: Tipo de serviço (Alimentação, Equipamento, Material Promocional).
-  - `custo`: Preço do item.
+  - `descricao`: Descrição do item.
+  - `categoria`: Tipo (e.g., Alimentação, Equipamento).
+  - `custo`: Valor do item.
 - **Funcionalidades**:
   - Cadastrar, editar e visualizar itens de serviço.
-  - Associar itens a pacotes de serviços.
+  - Associar itens a pacotes.
 
-#### 3. **Requisitos Não Funcionais**
-- **Escalabilidade**: o sistema deve ser projetado para permitir a adição de novas funcionalidades e módulos no futuro.
+## 3. Requisitos Não Funcionais
+- **Escalabilidade**: Permitir adição de novos módulos e funcionalidades.
+- **Segurança**: Implementar autenticação e controle de acessos.
 
-#### 4. **Modelo de Dados**
-- **Classes Principais**:
-  - `Empresa`
-  - `Cliente`
-  - `Congresso`
-  - `Atividade`
-  - `MembroEquipe`
-  - `Fornecedor`
-  - `PacoteServico`
-  - `ItemServico`
+## 4. Modelo de Dados
+### Classes Principais
+- **Empresa**
+- **Cliente**
+- **Congresso**
+- **Atividade**
+- **Profissional**
+- **Fornecedor**
+- **PacoteServico**
+- **ItemServico**
 
-#### 5. **Interações entre Classes**
-- Um `Cliente` pode estar associado a múltiplos `Congressos`.
-- Um `Congresso` pode incluir várias `Atividades`.
-- Um `MembroEquipe` pode ser designado para várias `Atividades` em diferentes `Congressos`.
-- Um `Fornecedor` pode oferecer múltiplos `PacotesServico`, que por sua vez podem conter vários `ItemServico`.
+## 5. Interações entre Classes
+- Um **Cliente** pode contratar vários **Congressos**.
+- Um **Congresso** inclui várias **Atividades**.
+- Um **Profissional** pode ser designado para múltiplas **Atividades**.
+- Um **Fornecedor** pode fornecer vários **PacotesServico**, que incluem vários **ItensServico**.
 
-#### 6. **Casos de Uso**
-- **Caso de Uso 1**: Cadastrar um novo congresso.
-  - **Ator**: Gerente de Eventos.
-  - **Descrição**: O gerente insere as informações do congresso e associa ao cliente.
-  
-- **Caso de Uso 2**: Adicionar uma nova atividade a um congresso existente.
-  - **Ator**: Gerente de Eventos.
-  - **Descrição**: O gerente seleciona um congresso e adiciona uma nova atividade.
+## 6. Casos de Uso
 
-- **Caso de Uso 3**: Designar um membro da equipe para uma atividade específica.
-  - **Ator**: Gerente de Eventos.
-  - **Descrição**: O gerente atribui um membro da equipe a uma atividade.
+### Caso de Uso 1: Cadastrar um novo congresso
+**Ator**: Gerente de Eventos  
+**Descrição**: O gerente insere informações do congresso e associa ao cliente.
 
-- **Caso de Uso 4**: Criar um novo pacote de serviços a partir de itens de serviço disponíveis.
-  - **Ator**: Gerente de Fornecedores.
-  - **Descrição**: O gerente cria um pacote combinando diferentes itens de serviço.
+### Caso de Uso 2: Adicionar uma nova atividade a um congresso
+**Ator**: Gerente de Eventos  
+**Descrição**: O gerente seleciona um congresso e adiciona uma atividade.
 
-#### 7. **Métricas de Avaliação**
-- O sistema deve ser avaliado com base em:
-  - **Precisão**: Taxa de erros em cadastros e relatórios gerados.
+### Caso de Uso 3: Designar um membro da equipe para uma atividade específica
+**Ator**: Gerente de Eventos  
+**Descrição**: O gerente designa um profissional para uma tarefa específica.
+
+### Caso de Uso 4: Criar um novo pacote de serviços a partir de itens disponíveis
+**Ator**: Gerente de Fornecedores  
+**Descrição**: O gerente cria um pacote combinando itens de serviço.
+
+## 7. Métricas de Avaliação
+- **Precisão**: Medir a taxa de erros em cadastros e relatórios.
+- **Desempenho**: Avaliar a eficiência no processamento de dados de congressos grandes.
