@@ -1,6 +1,3 @@
-Aqui está a documentação atualizada, refletindo as novas diretrizes e expandindo os detalhes para o contexto de uma empresa de coordenação de eventos corporativos, conforme solicitado:
-
----
 
 # Especificação do Projeto: Sistema de Gerenciamento de Congressos Empresariais
 
