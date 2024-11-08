@@ -1,7 +1,3 @@
-Aqui está a documentação reformulada para o "Sistema de Gerenciamento de Congressos Empresariais", incorporando a estrutura de classes e relacionamentos que você descreveu:
-
----
-
 ## Especificação do Projeto
 
 ### Sistema de Gerenciamento de Congressos Empresariais
