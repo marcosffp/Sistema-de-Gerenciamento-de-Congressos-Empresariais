@@ -33,8 +33,8 @@ public class SistemaCongresso {
                 // case 5 -> cadastrarPacoteServico();
                 // case 6 -> calcularCustoTotalPacote();
                 // case 7 -> listarAtividades();
-                case 0 -> JOptionPane.showMessageDialog(null, "Saindo do sistema...");
-                default -> JOptionPane.showMessageDialog(null, "Opção inválida!");
+                // case 0 -> JOptionPane.showMessageDialog(null, "Saindo do sistema...");
+                // default -> JOptionPane.showMessageDialog(null, "Opção inválida!");
             }
         } while (opcao != 0);
     }
