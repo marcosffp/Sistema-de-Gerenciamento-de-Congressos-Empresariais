@@ -25,7 +25,8 @@ public class SistemaCongresso {
         do {
             opcao = mostrarMenu();
             switch (opcao) {
-                case 1 -> cadastrarCongresso();
+                case 1: cadastrarCongresso();
+                    break;
                 // case 2 -> cadastrarAtividade();
                 // case 3 -> cadastrarProfissional();
                 // case 4 -> cadastrarFornecedor();
