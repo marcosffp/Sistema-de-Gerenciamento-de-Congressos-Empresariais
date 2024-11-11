@@ -1,6 +1,6 @@
 package pm.br.business;
 
-public class Pessoa {
+public abstract class Pessoa {
 
     private String nome;
 
