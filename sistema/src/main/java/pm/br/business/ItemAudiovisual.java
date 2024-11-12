@@ -4,8 +4,8 @@ public class ItemAudiovisual extends ItemServico {
     private String equipamento;
     private Double precoUnitario;
 
-    public ItemAudiovisual(String tipo, Double custo, int quantidade, String descricao, String equipamento, Double precoUnitario) {
-        super(tipo, custo, quantidade, descricao);
+    public ItemAudiovisual(String tipo, int quantidade, String descricao, String equipamento, Double precoUnitario) {
+        super(tipo, quantidade, descricao);
         this.setEquipamento(equipamento);
         this.setPrecoUnitario(precoUnitario);
     }
@@ -18,7 +18,8 @@ public class ItemAudiovisual extends ItemServico {
         this.equipamento = equipamento;
     }
 
-    public Double getPrecoUnitario() {
+    @Override
+    public Double getCusto() {
         return precoUnitario;
     }
 
@@ -31,13 +32,13 @@ public class ItemAudiovisual extends ItemServico {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
         sb.append("Equipamento: ").append(this.getEquipamento()).append("\n");
-        sb.append("Preco Unitario: ").append(this.getPrecoUnitario()).append("\n");
+        sb.append("Preco Unitario: ").append(this.getCusto()).append("\n");
         return sb.toString();
     }
     
     @Override
     public Double calcularCustoTotal(){
-        return this.getPrecoUnitario() * this.getQuantidade();
+        return this.getCusto() * this.getQuantidade();
     }
 
 }

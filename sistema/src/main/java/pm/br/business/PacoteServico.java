@@ -31,7 +31,6 @@ public class PacoteServico {
         this.descricao = descricao;
     }
 
-
     public void adicionarItemServico(ItemServico item) {
         itens.add(item);
     }

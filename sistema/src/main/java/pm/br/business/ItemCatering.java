@@ -4,9 +4,9 @@ public class ItemCatering extends ItemServico {
     private String tipoAlimento;
     private Double precoPorPessoa;
 
-    public ItemCatering(String tipo, Double custo, int quantidade, String descricao, String tipoAlimento,
+    public ItemCatering(String tipo, int quantidade, String descricao, String tipoAlimento,
             Double precoPorPessoa) {
-        super(tipo, custo, quantidade, descricao);
+        super(tipo, quantidade, descricao);
         this.setTipoAlimento(tipoAlimento);
         this.setPrecoPorPessoa(precoPorPessoa);
     }
@@ -19,7 +19,8 @@ public class ItemCatering extends ItemServico {
         this.tipoAlimento = tipoAlimento;
     }
 
-    public Double getPrecoPorPessoa() {
+    @Override
+    public Double getCusto() {
         return precoPorPessoa;
     }
 
@@ -37,7 +38,7 @@ public class ItemCatering extends ItemServico {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
         sb.append("Tipo de Alimento: ").append(this.getTipoAlimento()).append("\n");
-        sb.append("Preco por Pessoa: ").append(this.getPrecoPorPessoa()).append("\n");
+        sb.append("Preco por Pessoa: ").append(this.getCusto()).append("\n");
         return sb.toString();
     } 
 
