@@ -4,75 +4,91 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Congresso {
-    private String setor;
-    private float valorContratado;
-    private String especificacoes;
-    private List<Atividade> atividades = new ArrayList<>();
-    private List<Fornecedor> fornecedores = new ArrayList<>();
+  private String setor;
+  private float valorContratado;
+  private String especificacoes;
+  private List<Atividade> atividades;
+  private List<Fornecedor> fornecedores;
 
-    public Congresso(String setor, float valorContratado, String especificacoes) {
-        this.setor = setor;
-        this.valorContratado = valorContratado;
-        this.especificacoes = especificacoes;
+  public Congresso(String setor, float valorContratado, String especificacoes) {
+    this.setSetor(setor);
+    this.setValorContratado(valorContratado);
+    this.setEspecificacoes(especificacoes);
+    this.atividades = new ArrayList<>();
+    this.fornecedores = new ArrayList<>();
+  }
+
+  public String getSetor() {
+    return setor;
+  }
+
+  public void setSetor(String setor) {
+    this.setor = setor;
+  }
+
+  public double getValorContratado() {
+    return valorContratado;
+  }
+
+  public void setValorContratado(float valorContratado) {
+    this.valorContratado = valorContratado;
+  }
+
+  public String getEspecificacoes() {
+    return especificacoes;
+  }
+
+  public void setEspecificacoes(String especificacoes) {
+    this.especificacoes = especificacoes;
+  }
+
+  public List<Fornecedor> getFornecedores() {
+    return fornecedores;
+  }
+
+  public void adicionarFornecedor(Fornecedor fornecedor) {
+    fornecedores.add(fornecedor);
+  }
+
+  public void removerFornecedor(Fornecedor fornecedor) {
+    fornecedores.remove(fornecedor);
+  }
+
+  public void removerFornecedorPorNome(String nome) {
+    for (Fornecedor f : fornecedores) {
+      if (f.getNome().equalsIgnoreCase(nome)) {
+        fornecedores.remove(f);
+        break;
+      }
     }
+  }
 
-    public String getSetor() {
-        return setor;
+  public List<Fornecedor> filtrarFornecedoresPorTipoDeServiço(String tipo) {
+    return fornecedores.stream().filter(f -> f.getTipoServico().equalsIgnoreCase(tipo)).toList();
+  }
+
+  public void removerAtividade(Atividade atividade) {
+    atividades.remove(atividade);
+  }
+
+  public void removerAtividadePorTipo(String tipo) {
+    for (Atividade a : atividades) {
+      if (a.getTipo().equalsIgnoreCase(tipo)) {
+        atividades.remove(a);
+        break;
+      }
     }
+  }
 
-    public void setSetor(String setor) {
-        this.setor = setor;
-    }
+  public void adicionarAtividade(Atividade atividade) {
+    atividades.add(atividade);
+  }
 
-    public double getValorContratado() {
-        return valorContratado;
-    }
+  public List<Atividade> filtrarAtividadesPorData(String data) {
+    return atividades.stream().filter(a -> a.getData().equalsIgnoreCase(data)).toList();
+  }
 
-    public void setValorContratado(float valorContratado) {
-        this.valorContratado = valorContratado;
-    }
-
-    public String getEspecificacoes() {
-        return especificacoes;
-    }
-
-    public void setEspecificacoes(String especificacoes) {
-        this.especificacoes = especificacoes;
-    }
-
-    public void setAtividades(List<Atividade> atividades) {
-        this.atividades = atividades;
-    }
-
-    public List<Fornecedor> getFornecedores() {
-        return fornecedores;
-    }
-
-    public void setFornecedores(List<Fornecedor> fornecedores) {
-        this.fornecedores = fornecedores;
-    }
-
-    public void adicionarFornecedor(Fornecedor fornecedor) {
-        fornecedores.add(fornecedor);
-    }
-
-    public void adicionarAtividade(Atividade atividade) {
-        atividades.add(atividade);
-    }
-
-    public List<Atividade> filtrarAtividadesPorData(String data) {
-        List<Atividade> filtradas = new ArrayList<>();
-        for (Atividade a : atividades) {
-            if (a.getData().equalsIgnoreCase(data)) {
-                filtradas.add(a);
-            }
-        }
-
-        return filtradas;
-    }
-
-    public List<Atividade> listarAtividades() {
-        return atividades;
-    }
-
+  public List<Atividade> listarAtividades() {
+    return atividades;
+  }
 }

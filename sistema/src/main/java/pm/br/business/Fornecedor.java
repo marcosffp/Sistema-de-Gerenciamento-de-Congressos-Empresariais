@@ -6,7 +6,7 @@ public class Fornecedor extends Pessoa {
 
     public Fornecedor(String nome, String tipoServico) {
         super(nome);
-        this.tipoServico = tipoServico;
+       this.setTipoServico(tipoServico);
     }
 
     public String getTipoServico() {
@@ -17,9 +17,11 @@ public class Fornecedor extends Pessoa {
         this.tipoServico = tipoServico;
     }
 
-    public String obterDetalhes() {
-        return "Fornecedor: " + getNome() +
-                ", Tipo de Serviço: " + tipoServico;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("Tipo de Servico: ").append(this.getTipoServico()).append("\n");
+        return sb.toString();
     }
-
 }

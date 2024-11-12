@@ -7,11 +7,12 @@ import java.util.List;
 public class PacoteServico {
     private String nome;
     private String descricao;
-    private List<ItemServico> itens = new ArrayList<>();
+    private List<ItemServico> itens;
 
     public PacoteServico(String nome, String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
+        this.setNome(nome);
+        this.setDescricao(descricao);
+        this.itens = new ArrayList<>();
     }
 
     public String getNome() {
@@ -21,6 +22,15 @@ public class PacoteServico {
     public String getDescricao() {
         return descricao;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
 
     public void adicionarItemServico(ItemServico item) {
         itens.add(item);
@@ -33,7 +43,9 @@ public class PacoteServico {
     // Não lembro se o Hugo ensinou assim, mas vi um vídeo no youtube que ordena
     // desse jeito.
     // Tanto o de cima quanto o debaixo tem a mesma lógica, na dúvida deixei os dois
-    // pra vocês escolherem
+    // pra vocês escolherem]
+    // ACHO QUE O DE CIMA É MAIS LEGÍVEL - vitor
+    // adicionei mais um q acho q fica melhor com stream - vitor
     public List<ItemServico> ordenarItensPorCusto() {
         /*
          * Comparator<ItemServico> itensOrdenados = (o1, o2) ->
@@ -42,6 +54,9 @@ public class PacoteServico {
          * return itens;
          */
 
+
+        // return itens.stream().sorted(Comparator.comparing(ItemServico::getCusto)).toList();
+
         Comparator<ItemServico> itensOrdenados = Comparator.comparing(ItemServico::getCusto);
         itens.sort(itensOrdenados);
         return itens;
@@ -49,21 +64,11 @@ public class PacoteServico {
     }
 
     public List<ItemServico> filtrarItensPorTipo(String tipo) {
-        List<ItemServico> filtrados = new ArrayList<>();
-        for (ItemServico i : itens) {
-            if (i.getTipo().equalsIgnoreCase(tipo)) {
-                filtrados.add(i);
-            }
-        }
-        return filtrados;
+        return itens.stream().filter(i -> i.getTipo().equalsIgnoreCase(tipo)).toList();
     }
 
     public float calcularCustoTotal() {
-        float custoTotal = 0;
-        for (ItemServico item : itens) {
-            custoTotal += item.calcularCustoTotal();
-        }
-        return custoTotal;
+        return (float) itens.stream().mapToDouble(ItemServico::calcularCustoTotal).sum();
     }
 
 }

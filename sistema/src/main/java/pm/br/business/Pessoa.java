@@ -5,7 +5,7 @@ public abstract class Pessoa {
     private String nome;
 
     public Pessoa(String nome) {
-        this.nome = nome;
+        this.setNome(nome);
     }
 
     public String getNome() {
@@ -14,6 +14,13 @@ public abstract class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nome: ").append(this.getNome());
+        return sb.toString();
     }
 
 }
