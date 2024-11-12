@@ -70,4 +70,15 @@ public class PacoteServico {
         return (float) itens.stream().mapToDouble(ItemServico::calcularCustoTotal).sum();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nome: ").append(this.getNome()).append("\n");
+        sb.append("Descricao: ").append(this.getDescricao()).append("\n");
+        sb.append("Itens: ").append("\n");
+        for (ItemServico item : itens) {
+            sb.append(item.toString()).append("\n");
+        }
+        return sb.toString();
+    }
 }
