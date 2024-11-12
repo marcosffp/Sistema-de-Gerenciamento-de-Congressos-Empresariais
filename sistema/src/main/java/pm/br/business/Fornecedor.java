@@ -1,16 +1,14 @@
 package pm.br.business;
 
-public class Fornecedor extends Pessoa {
+public class Fornecedor extends PessoaJuridica {
 
   private String tipoServico;
-  private String cnpj;
   private String endereco;
 
-  public Fornecedor(String nome, String tipoServico, String cnpj, String endereco) {
-    super(nome);
-    this.setTipoServico(tipoServico);
-    this.setCnpj(cnpj);
-    this.setEndereco(endereco);
+  public Fornecedor(String nome, String cnpj, String tipoServico, String endereco) {
+    super(nome, cnpj);
+    this.tipoServico = tipoServico;
+    this.endereco = endereco;
   }
 
   public String getTipoServico() {
@@ -19,14 +17,6 @@ public class Fornecedor extends Pessoa {
 
   public void setTipoServico(String tipoServico) {
     this.tipoServico = tipoServico;
-  }
-
-  public String getCnpj() {
-    return cnpj;
-  }
-
-  public void setCnpj(String cnpj) {
-    this.cnpj = cnpj;
   }
 
   public String getEndereco() {
@@ -42,6 +32,7 @@ public class Fornecedor extends Pessoa {
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
     sb.append("Tipo de Servico: ").append(this.getTipoServico()).append("\n");
+    sb.append("Endereço: ").append(this.getEndereco()).append("\n");
     return sb.toString();
   }
 }

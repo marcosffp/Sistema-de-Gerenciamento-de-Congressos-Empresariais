@@ -16,17 +16,15 @@ Atividade
 - qtdParticipantes: int
 --
 + filtrarProfissionaisPorPapel(papel: String): List&lt;Profissional&gt;
-+ ordenarProfissionaisPorAlocacaoTempo(): List&lt;Profissional&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>207</y><w>288</w><h>117</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++ ordenarProfissionaisPorAlocacaoTempo(): List&lt;Profissional&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>207</y><w>288</w><h>90</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Profissional
 --
 - papel: String
--cpf:String
 - alocacaoTempo: String
 --
-+toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>396</y><w>288</w><h>117</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>396</y><w>288</w><h>90</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Fornecedor
 --
--cnpj:String
 - tipoServico: String
 -endereço:String
 --
@@ -38,7 +36,7 @@ PacoteServico
 --
 + calcularCustoTotal(): float
 + ordenarItensPorCusto(): List&lt;ItemServico&gt;
-+ filtrarItensPorTipo(tipo: String): List&lt;ItemServico&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1314</x><y>585</y><w>288</w><h>153</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
++ filtrarItensPorTipo(tipo: String): List&lt;ItemServico&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1314</x><y>630</y><w>288</w><h>153</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 ItemServico
 --
 - tipo: String
@@ -50,14 +48,14 @@ ItemServico
 +toStrig():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1233</x><y>180</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 CalculadoraDeCusto
 --
-+ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>918</x><y>702</y><w>288</w><h>90</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>702</y><w>288</w><h>90</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 ItemCatering 
 --
 - tipoAlimento: String
 - precoPorPessoa: float
 --
 + calcularCustoTotal(): float
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>918</x><y>567</y><w>288</w><h>99</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>567</y><w>288</w><h>99</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 ItemAudiovisua
 --
 - equipamento: String
@@ -79,14 +77,22 @@ m2=0..*</panel_attributes><additional_attributes>10;10;130;10</additional_attrib
 m1=1
 m2=0..*</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1116</x><y>441</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;210;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>441</x><y>324</y><w>288</w><h>81</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+m2=0..*</panel_attributes><additional_attributes>10;10;210;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>333</y><w>288</w><h>81</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 Pessoa
 --
 - nome: String
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>270</y><w>135</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;100;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>369</y><w>135</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1449</x><y>486</y><w>45</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>225</x><y>270</y><w>225</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10;230;10</additional_attributes></element><element><id>Relation</id><coordinates><x>225</x><y>405</y><w>207</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70;210;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1449</x><y>486</y><w>45</w><h>162</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>612</y><w>135</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>693</y><w>135</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1413</x><y>225</y><w>27</w><h>153</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;150;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1224</x><y>36</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+m2=0..*</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>1179</x><y>630</y><w>153</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1179</x><y>747</y><w>153</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1413</x><y>225</y><w>27</w><h>153</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;150;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1224</x><y>36</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 ImplCalculadoraDeCusto
 --
-+ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>81</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element></diagram>
++ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>81</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>252</y><w>288</w><h>63</h></coordinates><panel_attributes>PessoaFisica
+--
+- cpf: String
+--
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>423</y><w>288</w><h>63</h></coordinates><panel_attributes>PessoaJuridica
+--
+- cnpj: String
+--
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>711</x><y>261</y><w>144</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>693</x><y>423</y><w>162</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element></diagram>
