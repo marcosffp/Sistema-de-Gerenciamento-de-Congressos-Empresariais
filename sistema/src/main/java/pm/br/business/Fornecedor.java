@@ -4,11 +4,13 @@ public class Fornecedor extends Pessoa {
 
   private String tipoServico;
   private String cnpj;
+  private String endereco;
 
-  public Fornecedor(String nome, String tipoServico, String cnpj) {
+  public Fornecedor(String nome, String tipoServico, String cnpj, String endereco) {
     super(nome);
     this.setTipoServico(tipoServico);
     this.setCnpj(cnpj);
+    this.setEndereco(endereco);
   }
 
   public String getTipoServico() {
@@ -25,6 +27,14 @@ public class Fornecedor extends Pessoa {
 
   public void setCnpj(String cnpj) {
     this.cnpj = cnpj;
+  }
+
+  public String getEndereco() {
+    return endereco;
+  }
+
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
   }
 
   @Override
