@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>297</w><h>135</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>423</y><w>297</w><h>135</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Congresso
 --
 - setor: String
@@ -7,7 +7,7 @@ Congresso
 
 --
 + filtrarAtividadesPorData(data: String): List&lt;Atividade&gt;
-+ ordenarProfissionaisPorPapel(): List&lt;Profissional&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>396</x><y>0</y><w>333</w><h>135</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++ ordenarProfissionaisPorPapel(): List&lt;Profissional&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>396</x><y>423</y><w>333</w><h>135</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Atividade
 --
 - tipo: String
@@ -16,21 +16,21 @@ Atividade
 - qtdParticipantes: int
 --
 + filtrarProfissionaisPorPapel(papel: String): List&lt;Profissional&gt;
-+ ordenarProfissionaisPorAlocacaoTempo(): List&lt;Profissional&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>207</y><w>288</w><h>117</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++ ordenarProfissionaisPorAlocacaoTempo(): List&lt;Profissional&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>630</y><w>288</w><h>117</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Profissional
 --
 - papel: String
 -cpf:String
 - alocacaoTempo: String
 --
-+toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>396</y><w>288</w><h>117</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>819</y><w>288</w><h>117</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Fornecedor
 --
 -cnpj:String
 - tipoServico: String
 -endereço:String
 --
-+toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1305</x><y>360</y><w>288</w><h>135</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++toString():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1305</x><y>783</y><w>288</w><h>135</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 PacoteServico
 --
 - nome: String
@@ -38,7 +38,7 @@ PacoteServico
 --
 + calcularCustoTotal(): float
 + ordenarItensPorCusto(): List&lt;ItemServico&gt;
-+ filtrarItensPorTipo(tipo: String): List&lt;ItemServico&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1314</x><y>585</y><w>288</w><h>153</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
++ filtrarItensPorTipo(tipo: String): List&lt;ItemServico&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1314</x><y>1008</y><w>288</w><h>153</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 ItemServico
 --
 - tipo: String
@@ -47,46 +47,46 @@ ItemServico
 - descricao: String
 --
 + calcularCustoTotal(): float
-+toStrig():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1233</x><y>180</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
++toStrig():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1233</x><y>603</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 CalculadoraDeCusto
 --
-+ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>918</x><y>702</y><w>288</w><h>90</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
++ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>918</x><y>1125</y><w>288</w><h>90</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 ItemCatering 
 --
 - tipoAlimento: String
 - precoPorPessoa: float
 --
 + calcularCustoTotal(): float
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>918</x><y>567</y><w>288</w><h>99</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>918</x><y>990</y><w>288</w><h>99</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 ItemAudiovisua
 --
 - equipamento: String
 - precoUnitario: float
 --
 + calcularCustoTotal(): float
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>99</y><w>126</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>522</y><w>126</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>36</y><w>288</w><h>81</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+m2=0..*</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>837</x><y>459</y><w>288</w><h>81</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 Atribuicao
 --
 - dataAtribuicao: LocalDate
 - cargaHoraria: int
 --
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>72</y><w>135</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>495</y><w>135</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>954</x><y>108</y><w>45</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>954</x><y>531</y><w>45</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1116</x><y>441</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1116</x><y>864</y><w>207</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;210;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>441</x><y>324</y><w>288</w><h>81</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+m2=0..*</panel_attributes><additional_attributes>10;10;210;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>441</x><y>747</y><w>288</w><h>81</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 Pessoa
 --
 - nome: String
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>270</y><w>135</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;100;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>369</y><w>135</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1449</x><y>486</y><w>45</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>693</y><w>135</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;100;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>792</y><w>135</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1449</x><y>909</y><w>45</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>612</y><w>135</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>693</y><w>135</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1413</x><y>225</y><w>27</w><h>153</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;150;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1224</x><y>36</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
+m2=0..*</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>1035</y><w>135</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>1116</y><w>135</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1413</x><y>648</y><w>27</w><h>153</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;150;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1224</x><y>459</y><w>387</w><h>54</h></coordinates><panel_attributes>&lt;&lt;class&gt;&gt;
 ImplCalculadoraDeCusto
 --
-+ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>81</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element></diagram>
++ calcularCusto(pacotesServico: List&lt;PacoteServico&gt;): float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>504</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element></diagram>
