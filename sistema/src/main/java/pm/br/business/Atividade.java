@@ -4,25 +4,29 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Atividade {
-  private String tipo;
+public abstract class Atividade {
+  private String descricao;
   private String data;
   private String local;
   private int qtdParticipantes;
   private List<PessoaFisica> profissionais;
 
-  public Atividade(String tipo, String data, String local, int qtdParticipantes) {
-    this.setTipo(tipo);
+  public Atividade(String descricao, String data, String local, int qtdParticipantes) {
+    this.setDescricao(descricao);
     this.setData(data);
     this.setLocal(local);
     this.setQtdParticipantes(qtdParticipantes);
     this.profissionais = new ArrayList<>();
   }
 
-  public String getTipo() {
-    return tipo;
+  public void setDescricao(String descricao) {
+      this.descricao = descricao;
   }
 
+  public String getDescricao() {
+      return descricao;
+  }
+  
   public String getData() {
     return data;
   }
@@ -33,10 +37,6 @@ public class Atividade {
 
   public int getQtdParticipantes() {
     return qtdParticipantes;
-  }
-
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
   }
 
   public void setData(String data) {
@@ -95,7 +95,7 @@ public class Atividade {
   @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Tipo: ").append(this.getTipo()).append("\n");
+        sb.append("Descricao: ").append(this.getDescricao()).append("\n");
         sb.append("Data: ").append(this.getData()).append("\n");
         sb.append("Local: ").append(this.getLocal()).append("\n");
         sb.append("Quantidade de participantes: ").append(this.getQtdParticipantes()).append("\n");
