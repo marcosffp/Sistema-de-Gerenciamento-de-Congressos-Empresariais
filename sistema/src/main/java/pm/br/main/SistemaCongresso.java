@@ -8,6 +8,7 @@ import pm.br.business.Fornecedor;
 import pm.br.business.ItemAudiovisual;
 import pm.br.business.ItemCatering;
 import pm.br.business.PacoteServico;
+import pm.br.business.PessoaFisica;
 import pm.br.business.Profissional;
 
 import java.util.ArrayList;
@@ -135,12 +136,12 @@ public class SistemaCongresso {
             papel = JOptionPane.showInputDialog("Informe o papel do profissional:");
         }
 
-        List<Profissional> profissionaisFiltrados = atividade.filtrarProfissionaisPorPapel(papel);
+        List<PessoaFisica> profissionaisFiltrados = atividade.filtrarProfissionaisPorPapel(papel);
         if (profissionaisFiltrados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhum profissional encontrado com o papel informado!");
         } else {
             String listaProfissionais = "Profissionais com o papel " + papel + ":\n";
-            for (Profissional profissional : profissionaisFiltrados) {
+            for (PessoaFisica profissional : profissionaisFiltrados) {
                 listaProfissionais += profissional.getNome() + "\n";
             }
             JOptionPane.showMessageDialog(null, listaProfissionais);

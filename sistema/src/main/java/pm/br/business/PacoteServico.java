@@ -39,26 +39,10 @@ public class PacoteServico {
         return itens;
     }
 
-    // Não lembro se o Hugo ensinou assim, mas vi um vídeo no youtube que ordena
-    // desse jeito.
-    // Tanto o de cima quanto o debaixo tem a mesma lógica, na dúvida deixei os dois
-    // pra vocês escolherem]
-    // ACHO QUE O DE CIMA É MAIS LEGÍVEL - vitor
-    // adicionei mais um q acho q fica melhor com stream - vitor
+ 
     public List<ItemServico> ordenarItensPorCusto() {
-        /*
-         * Comparator<ItemServico> itensOrdenados = (o1, o2) ->
-         * Float.compare(o1.getCusto(), o2.getCusto());
-         * itens.sort(itensOrdenados);
-         * return itens;
-         */
 
-
-        // return itens.stream().sorted(Comparator.comparing(ItemServico::getCusto)).toList();
-
-        Comparator<ItemServico> itensOrdenados = Comparator.comparing(ItemServico::getCusto);
-        itens.sort(itensOrdenados);
-        return itens;
+        return itens.stream().sorted(Comparator.comparing(ItemServico::getCusto)).toList();
 
     }
 

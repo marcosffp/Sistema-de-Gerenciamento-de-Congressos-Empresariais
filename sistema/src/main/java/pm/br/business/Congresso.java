@@ -8,7 +8,7 @@ public class Congresso {
   private float valorContratado;
   private String especificacoes;
   private List<Atividade> atividades;
-  private List<Fornecedor> fornecedores;
+  private List<PessoaJuridica> fornecedores;
 
   public Congresso(String setor, float valorContratado, String especificacoes) {
     this.setSetor(setor);
@@ -42,7 +42,7 @@ public class Congresso {
     this.especificacoes = especificacoes;
   }
 
-  public List<Fornecedor> getFornecedores() {
+  public List<PessoaJuridica> getFornecedores() {
     return fornecedores;
   }
 
@@ -55,7 +55,7 @@ public class Congresso {
   }
 
   public void removerFornecedorPorNome(String nome) {
-    for (Fornecedor f : fornecedores) {
+    for (PessoaJuridica f : fornecedores) {
       if (f.getNome().equalsIgnoreCase(nome)) {
         fornecedores.remove(f);
         break;
@@ -63,7 +63,7 @@ public class Congresso {
     }
   }
 
-  public List<Fornecedor> filtrarFornecedoresPorTipoDeServiço(String tipo) {
+  public List<PessoaJuridica> filtrarFornecedoresPorTipoDeServiço(String tipo) {
     return fornecedores.stream().filter(f -> f.getTipoServico().equalsIgnoreCase(tipo)).toList();
   }
 
