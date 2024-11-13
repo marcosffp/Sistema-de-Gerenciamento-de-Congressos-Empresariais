@@ -85,4 +85,34 @@ public class Congresso {
   public List<Atividade> listarAtividades() {
     return atividades;
   }
+
+  public List<Atividade> filtrarAtividadesPorLocal(String local) {
+    return atividades.stream().filter(a -> a.getLocal().equalsIgnoreCase(local)).toList();
+  }
+
+  public List<Atividade> filtrarAtividadesPorDescricao(String descricao) {
+    return atividades.stream().filter(a -> a.getDescricao().equalsIgnoreCase(descricao)).toList();
+  }
+
+  public List<Atividade> filtrarAtividadesPorQtdParticipantes(int qtdParticipantes) {
+    return atividades.stream().filter(a -> a.getQtdParticipantes() == qtdParticipantes).toList();
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Setor: ").append(this.getSetor()).append("\n");
+    sb.append("Valor contratado: ").append(this.getValorContratado()).append("\n");
+    sb.append("Especificacoes: ").append(this.getEspecificacoes()).append("\n");
+    sb.append("Fornecedores: ").append("\n");
+    fornecedores.forEach(f -> sb.append(f.getNome()).append("\n"));
+    sb.append("Atividades: ").append("\n");
+    atividades.forEach(a -> sb.append(a.getDescricao()).append("\n"));
+    return sb.toString();
+  }
+
+
+
+
+
 }
