@@ -54,7 +54,7 @@ public class Atribuicao {
         sb.append("Data de atribuicao: ").append(this.getDataAtribuicao()).append("\n");
         sb.append("Carga horaria: ").append(this.getCargaHoraria()).append("\n");
         sb.append("Profissional: ").append(this.getProfissional().getNome()).append("\n");
-        sb.append("Atividade: ").append(this.getAtividade().getTipo()).append("\n");
+        sb.append("Atividade: ").append(this.getAtividade().getDescricao()).append("\n");
         return sb.toString();
     }
 

@@ -74,10 +74,6 @@ public class Congresso {
     atividades.remove(atividade);
   }
 
-  public void removerAtividadePorTipo(String tipo) {
-    atividades.removeIf(a -> a.getTipo().equalsIgnoreCase(tipo));
-  }
-
   public void adicionarAtividade(Atividade atividade) {
     atividades.add(atividade);
   }
