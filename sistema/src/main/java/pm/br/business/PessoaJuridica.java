@@ -1,6 +1,6 @@
 package pm.br.business;
 
-public class PessoaJuridica extends Pessoa {
+public abstract class PessoaJuridica extends Pessoa {
     private String cnpj;
 
     public PessoaJuridica(String nome, String cnpj) {
@@ -22,5 +22,7 @@ public class PessoaJuridica extends Pessoa {
         sb.append("CNPJ: ").append(this.cnpj);
         return sb.toString();
     }
+
+    protected abstract String getTipoServico();
 
 }

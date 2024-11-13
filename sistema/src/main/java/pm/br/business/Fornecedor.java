@@ -11,6 +11,7 @@ public class Fornecedor extends PessoaJuridica {
     this.endereco = endereco;
   }
 
+  @Override
   public String getTipoServico() {
     return tipoServico;
   }
