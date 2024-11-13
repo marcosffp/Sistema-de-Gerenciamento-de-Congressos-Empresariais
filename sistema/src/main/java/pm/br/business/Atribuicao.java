@@ -6,10 +6,10 @@ public class Atribuicao {
 
     private LocalDate dataAtribuicao;
     private int cargaHoraria;
-    private Profissional profissional;
+    private PessoaFisica profissional;
     private Atividade atividade;
 
-    public Atribuicao(LocalDate dataAtribuicao, int cargaHoraria, Profissional profissional, Atividade atividade) {
+    public Atribuicao(LocalDate dataAtribuicao, int cargaHoraria, PessoaFisica profissional, Atividade atividade) {
         this.setDataAtribuicao(dataAtribuicao);
         this.setCargaHoraria(cargaHoraria);
         this.setProfissional(profissional);
@@ -24,7 +24,7 @@ public class Atribuicao {
         return cargaHoraria;
     }
 
-    public Profissional getProfissional() {
+    public PessoaFisica getProfissional() {
         return profissional;
     }
 
@@ -40,7 +40,7 @@ public class Atribuicao {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public void setProfissional(Profissional profissional) {
+    public void setProfissional(PessoaFisica profissional) {
         this.profissional = profissional;
     }
 

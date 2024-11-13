@@ -46,25 +46,28 @@ public class Congresso {
     return fornecedores;
   }
 
-  public void adicionarFornecedor(Fornecedor fornecedor) {
+  public List<Atividade> getAtividades() {
+    return atividades;
+  }
+
+  public void adicionarFornecedor(PessoaJuridica fornecedor) {
     fornecedores.add(fornecedor);
   }
 
-  public void removerFornecedor(Fornecedor fornecedor) {
+  public void removerFornecedor(PessoaJuridica fornecedor) {
     fornecedores.remove(fornecedor);
   }
 
   public void removerFornecedorPorNome(String nome) {
-    for (PessoaJuridica f : fornecedores) {
-      if (f.getNome().equalsIgnoreCase(nome)) {
-        fornecedores.remove(f);
-        break;
-      }
-    }
+    fornecedores.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
   }
 
   public List<PessoaJuridica> filtrarFornecedoresPorTipoDeServiço(String tipo) {
     return fornecedores.stream().filter(f -> f.getTipoServico().equalsIgnoreCase(tipo)).toList();
+  }
+
+  public List<PessoaJuridica> listarFornecedores() {
+    return fornecedores;
   }
 
   public void removerAtividade(Atividade atividade) {
@@ -72,12 +75,7 @@ public class Congresso {
   }
 
   public void removerAtividadePorTipo(String tipo) {
-    for (Atividade a : atividades) {
-      if (a.getTipo().equalsIgnoreCase(tipo)) {
-        atividades.remove(a);
-        break;
-      }
-    }
+    atividades.removeIf(a -> a.getTipo().equalsIgnoreCase(tipo));
   }
 
   public void adicionarAtividade(Atividade atividade) {

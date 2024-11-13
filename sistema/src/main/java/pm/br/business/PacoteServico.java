@@ -8,6 +8,7 @@ public class PacoteServico {
     private String nome;
     private String descricao;
     private List<ItemServico> itens;
+    
 
     public PacoteServico(String nome, String descricao) {
         this.setNome(nome);
