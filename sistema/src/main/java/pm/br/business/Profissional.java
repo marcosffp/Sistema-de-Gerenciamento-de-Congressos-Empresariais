@@ -12,10 +12,12 @@ public class Profissional extends PessoaFisica {
     this.alocacaoTempo = alocacaoTempo;
   }
 
+  @Override
   public String getPapel() {
     return papel;
   }
 
+  @Override
   public String getAlocacaoTempo() {
     return alocacaoTempo;
   }

@@ -9,7 +9,7 @@ public class Atividade {
   private String data;
   private String local;
   private int qtdParticipantes;
-  private List<Profissional> profissionais;
+  private List<PessoaFisica> profissionais;
 
   public Atividade(String tipo, String data, String local, int qtdParticipantes) {
     this.setTipo(tipo);
@@ -55,20 +55,20 @@ public class Atividade {
     profissionais.add(profissional);
   }
 
-  public List<Profissional> filtrarProfissionaisPorPapel(String papel) {
+  public List<PessoaFisica> filtrarProfissionaisPorPapel(String papel) {
     return profissionais.stream()
         .filter(profissional -> profissional.getPapel().equals(papel))
         .toList();
   }
 
-  public List<Profissional> listaProfissionals() {
+  public List<PessoaFisica> listaProfissionals() {
     return profissionais;
   }
 
   // Não lembro se o Hugo ensinou assim, mas vi um vídeo no youtube que ordena
   // desse jeito.
   // adicionei o de baixo
-  public List<Profissional> ordenarProfissionaisPorAlocacaoTempo() {
+  public List<PessoaFisica> ordenarProfissionaisPorAlocacaoTempo() {
 
     /*
     Comparator<Profissional> profissionalOrdenado =
@@ -78,18 +78,18 @@ public class Atividade {
     */
 
     return profissionais.stream()
-        .sorted(Comparator.comparing(Profissional::getAlocacaoTempo))
+        .sorted(Comparator.comparing(PessoaFisica::getAlocacaoTempo))
         .toList();
   }
 
-  public List<Profissional> ordenarProfissionaisPorPapel() {
+  public List<PessoaFisica> ordenarProfissionaisPorPapel() {
     /*
     Comparator<Profissional> profissionalOrdenado = Comparator.comparing(Profissional::getPapel);
     profissionais.sort(profissionalOrdenado);
     return profissionais;
     */
 
-    return profissionais.stream().sorted(Comparator.comparing(Profissional::getPapel)).toList();
+    return profissionais.stream().sorted(Comparator.comparing(PessoaFisica::getPapel)).toList();
   }
 
   @Override
