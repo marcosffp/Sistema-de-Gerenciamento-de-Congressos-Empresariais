@@ -9,6 +9,7 @@ import pm.br.business.ItemAudiovisual;
 import pm.br.business.ItemCatering;
 import pm.br.business.PacoteServico;
 import pm.br.business.PessoaFisica;
+import pm.br.business.PessoaJuridica;
 import pm.br.business.Profissional;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ import java.util.List;
 public class SistemaCongresso {
 
     private static List<Congresso> congressos = new ArrayList<>();
-    private static List<Fornecedor> fornecedores = new ArrayList<>();
-    private static List<Profissional> profissionais = new ArrayList<>();
+    private static List<PessoaJuridica> fornecedores = new ArrayList<>();
+    private static List<PessoaFisica> profissionais = new ArrayList<>();
     private static List<PacoteServico> pacotesServicos = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -36,10 +37,14 @@ public class SistemaCongresso {
                     break;
                 case 5: cadastrarPacoteServico();
                     break;
-                // case 6 -> calcularCustoTotalPacote();
-                // case 7 -> listarAtividades();
-                // case 0 -> JOptionPane.showMessageDialog(null, "Saindo do sistema...");
-                // default -> JOptionPane.showMessageDialog(null, "Opção inválida!");
+                case 6: calcularCustoTotalPacote();
+                    break;
+                case 7: listarAtividades();
+                    break;
+                case 0: JOptionPane.showMessageDialog(null, "Saindo do sistema...");
+                    break;
+                default: JOptionPane.showMessageDialog(null, "Opção inválida!");
+                    break;
             }
         } while (opcao != 0);
     }
@@ -78,6 +83,29 @@ public class SistemaCongresso {
         Congresso congresso = new Congresso(setor, valorContratado, especificacoes);
         congressos.add(congresso);
         JOptionPane.showMessageDialog(null, "Congresso cadastrado com sucesso!");
+
+        int opcao; 
+        do {
+            opcao = Integer.parseInt(JOptionPane.showInputDialog(""" 
+                    Escolha uma opção:
+                    1 - Adicionar fornecedor
+                    2 - Listar fornecedores
+                    3 - remover fornecedor
+                    0 - Sair
+                    """));
+            switch (opcao) {
+                case 1: congresso.adicionarFornecedor(cadastrarFornecedor());
+                    break;
+                case 2: congresso.listarFornecedores();             
+                    break;
+                case 3: congresso.removerFornecedorPorNome(JOptionPane.showInputDialog("Informe o nome do fornecedor:"));
+                case 0: JOptionPane.showMessageDialog(null, "Saindo do cadastro de congresso...");
+                    break;
+                default: JOptionPane.showMessageDialog(null, "Opção inválida!");
+            }
+        } while (opcao != 0);
+
+
     }
     
     private static void cadastrarAtividade() {
@@ -175,7 +203,7 @@ public class SistemaCongresso {
         return profissional;
     }
 
-    private static void cadastrarFornecedor() {
+    private static PessoaJuridica cadastrarFornecedor() {
         String nome = "";
         while (nome.isBlank() || nome == null) {
             nome = JOptionPane.showInputDialog("Informe o nome do fornecedor:");
@@ -196,12 +224,32 @@ public class SistemaCongresso {
             endereco = JOptionPane.showInputDialog("Informe o endereço do fornecedor:");
         }
 
+        JOptionPane.showMessageDialog(null, "Deseja adicionar um pacote de serviço ao fornecedor?");
+        int opcao = Integer.parseInt(JOptionPane.showInputDialog("""
+                Escolha uma opção:
+                1 - Sim
+                2 - Não
+                """));
+        if (opcao == 1) {
+            PacoteServico pacoteServico = cadastrarPacoteServico();
+            Fornecedor fornecedor = new Fornecedor(nome, tipoServico, cnpj, endereco);
+            fornecedor.adicionarPacoteServico(pacoteServico);
+            fornecedores.add(fornecedor);
+        } else if (opcao == 2) {
+            Fornecedor fornecedor = new Fornecedor(nome, tipoServico, cnpj, endereco);
+            fornecedores.add(fornecedor);
+        } else {
+            JOptionPane.showMessageDialog(null, "Opção inválida!");
+        }
+
+
         Fornecedor fornecedor = new Fornecedor(nome,tipoServico ,cnpj, endereco);
         fornecedores.add(fornecedor);
         JOptionPane.showMessageDialog(null, "Fornecedor cadastrado com sucesso!");
+        return fornecedor;
     }
     
-    private static void cadastrarPacoteServico() {
+    private static PacoteServico cadastrarPacoteServico() {
         
         String nome = "";
         while (nome.isBlank() || nome == null) {
@@ -236,6 +284,7 @@ public class SistemaCongresso {
         } while (opcao != 0);
 
         JOptionPane.showMessageDialog(null, "Pacote de serviço cadastrado com sucesso!");
+        return pacoteServico;
     }
 
     private static void adicionarItemServico(PacoteServico pacoteServico) {
@@ -302,4 +351,37 @@ public class SistemaCongresso {
     private static void listarItensServico(PacoteServico pacoteServico) {
         pacoteServico.toString();
     }
+
+    private static void calcularCustoTotalPacote() {
+        String nomePacote = "";
+        while (nomePacote.isBlank() || nomePacote == null) {
+            nomePacote = JOptionPane.showInputDialog("Informe o nome do pacote de serviço:");
+        }
+
+        PacoteServico pacoteServico = null;
+        for (PacoteServico pacote : pacotesServicos) {
+            if (pacote.getNome().equals(nomePacote)) {
+                pacoteServico = pacote;
+                break;
+            }
+        }
+
+        if (pacoteServico == null) {
+            JOptionPane.showMessageDialog(null, "Pacote de serviço não encontrado!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Custo total do pacote de serviço: R$" + pacoteServico.calcularCustoTotal());
+        }
+    }
+
+    private static void listarAtividades() {
+        String listaAtividades = "Atividades cadastradas:\n";
+        for (Congresso congresso : congressos) {
+            for (Atividade atividade : congresso.getAtividades()) {
+                listaAtividades += atividade.getTipo() + "\n";
+            }
+        }
+        JOptionPane.showMessageDialog(null, listaAtividades);
+   }
+   
+    
 }
