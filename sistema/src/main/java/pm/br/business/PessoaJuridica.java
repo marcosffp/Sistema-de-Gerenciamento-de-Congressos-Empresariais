@@ -23,6 +23,6 @@ public abstract class PessoaJuridica extends Pessoa {
         return sb.toString();
     }
 
-    protected abstract String getTipoServico();
+    public abstract String getTipoServico();
 
 }

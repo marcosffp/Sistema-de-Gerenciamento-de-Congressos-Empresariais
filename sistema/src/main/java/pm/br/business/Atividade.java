@@ -51,7 +51,7 @@ public class Atividade {
     this.qtdParticipantes = qtdParticipantes;
   }
 
-  public void adicionarProfissional(Profissional profissional) {
+  public void adicionarProfissional(PessoaFisica profissional) {
     profissionais.add(profissional);
   }
 
