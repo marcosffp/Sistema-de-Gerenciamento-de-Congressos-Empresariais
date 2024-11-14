@@ -32,40 +32,40 @@ public class SistemaCongresso {
   public static void main(String[] args) {
     int opcao;
     do {
-      opcao = mostrarMenu();
-      switch (opcao) {
-        case 1:
-          cadastrarCongresso();
-          break;
-        case 2:
-          cadastrarAtividade();
-          break;
-        case 3:
-          cadastrarProfissional();
-          break;
-        case 4:
-          cadastrarFornecedor();
-          break;
-        case 5:
-          cadastrarPacoteServico();
-          break;
-        case 6:
-          calcularCustoTotalPacote();
-          break;
-        case 7:
-          listarAtividades();
-          break;
-        case 0:
-          JOptionPane.showMessageDialog(null, "Saindo do sistema...");
-          break;
-        default:
-          JOptionPane.showMessageDialog(null, "Opção inválida!");
-          break;
-      }
+        opcao = mostrarMenu();
+        switch (opcao) {
+            case 1:
+                cadastrarCongresso();
+                break;
+            case 2:
+                cadastrarAtividade();
+                break;
+            case 3:
+                cadastrarProfissional();
+                break;
+            case 4:
+                cadastrarFornecedor();
+                break;
+            case 5:
+                cadastrarPacoteServico();
+                break;
+            case 6:
+                calcularCustoTotalPacote();
+                break;
+            case 7:
+                listarAtividades();
+                break;
+            case 0:
+                JOptionPane.showMessageDialog(null, "Saindo do sistema...");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção inválida!");
+                break;
+        }
     } while (opcao != 0);
-  }
+}
 
-  private static int mostrarMenu() {
+private static int mostrarMenu() {
     String menu =
         """
         Escolha uma opção:
@@ -78,8 +78,12 @@ public class SistemaCongresso {
         7 - Listar Atividades
         0 - Sair
         """;
-    return Integer.parseInt(JOptionPane.showInputDialog(menu));
-  }
+    String input = JOptionPane.showInputDialog(menu);
+    if (input == null) {
+        return 0; 
+    }
+    return Integer.parseInt(input);
+}
 
   private static void cadastrarCongresso() {
     String setor = "";
