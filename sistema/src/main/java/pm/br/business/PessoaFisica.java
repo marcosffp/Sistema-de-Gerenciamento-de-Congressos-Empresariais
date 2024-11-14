@@ -25,5 +25,4 @@ public abstract class PessoaFisica extends Pessoa {
 
     public abstract String getPapel();
     public abstract String getAlocacaoTempo();
-    
 }

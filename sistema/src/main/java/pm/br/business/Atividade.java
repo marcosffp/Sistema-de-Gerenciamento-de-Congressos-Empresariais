@@ -20,11 +20,11 @@ public abstract class Atividade {
   }
 
   public void setDescricao(String descricao) {
-      this.descricao = descricao;
+    this.descricao = descricao;
   }
 
   public String getDescricao() {
-      return descricao;
+    return descricao;
   }
   
   public String getData() {
@@ -61,45 +61,29 @@ public abstract class Atividade {
         .toList();
   }
 
-  public List<PessoaFisica> listaProfissionals() {
+  public List<PessoaFisica> listarProfissionais() {
     return profissionais;
   }
 
-  // Não lembro se o Hugo ensinou assim, mas vi um vídeo no youtube que ordena
-  // desse jeito.
-  // adicionei o de baixo
   public List<PessoaFisica> ordenarProfissionaisPorAlocacaoTempo() {
-
-    /*
-    Comparator<Profissional> profissionalOrdenado =
-        Comparator.comparing(Profissional::getAlocacaoTempo);
-    profissionais.sort(profissionalOrdenado);
-    return profissionais;
-    */
-
     return profissionais.stream()
         .sorted(Comparator.comparing(PessoaFisica::getAlocacaoTempo))
         .toList();
   }
 
   public List<PessoaFisica> ordenarProfissionaisPorPapel() {
-    /*
-    Comparator<Profissional> profissionalOrdenado = Comparator.comparing(Profissional::getPapel);
-    profissionais.sort(profissionalOrdenado);
-    return profissionais;
-    */
-
-    return profissionais.stream().sorted(Comparator.comparing(PessoaFisica::getPapel)).toList();
+    return profissionais.stream()
+        .sorted(Comparator.comparing(PessoaFisica::getPapel))
+        .toList();
   }
 
   @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Descricao: ").append(this.getDescricao()).append("\n");
-        sb.append("Data: ").append(this.getData()).append("\n");
-        sb.append("Local: ").append(this.getLocal()).append("\n");
-        sb.append("Quantidade de participantes: ").append(this.getQtdParticipantes()).append("\n");
-        return sb.toString();
-    }
-
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Descricao: ").append(this.getDescricao()).append("\n");
+    sb.append("Data: ").append(this.getData()).append("\n");
+    sb.append("Local: ").append(this.getLocal()).append("\n");
+    sb.append("Quantidade de participantes: ").append(this.getQtdParticipantes()).append("\n");
+    return sb.toString();
+  }
 }

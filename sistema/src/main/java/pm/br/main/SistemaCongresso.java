@@ -84,18 +84,28 @@ public class SistemaCongresso {
   private static void cadastrarCongresso() {
     String setor = "";
     while (setor.isBlank() || setor == null) {
-      setor = JOptionPane.showInputDialog("Informe o setor do congresso:");
+        setor = JOptionPane.showInputDialog("Informe o setor do congresso:");
     }
 
     Float valorContratado = null;
-    while (valorContratado <= 0 || Float.isNaN(valorContratado) || valorContratado == null) {
-      valorContratado =
-          Float.parseFloat(JOptionPane.showInputDialog("Informe o valor contratado:"));
+    while (valorContratado == null || valorContratado <= 0 || Float.isNaN(valorContratado)) {
+        try {
+            valorContratado = Float.parseFloat(
+                JOptionPane.showInputDialog("Informe o valor contratado (deve ser maior que zero):")
+            );
+            if (valorContratado <= 0) {
+                JOptionPane.showMessageDialog(null, "O valor deve ser maior que zero. Tente novamente.");
+                valorContratado = null; 
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+            valorContratado = null; 
+        }
     }
 
     String especificacoes = "";
     while (especificacoes.isBlank() || especificacoes == null) {
-      especificacoes = JOptionPane.showInputDialog("Informe as especificações:");
+        especificacoes = JOptionPane.showInputDialog("Informe as especificações:");
     }
 
     Congresso congresso = new Congresso(setor, valorContratado, especificacoes);
@@ -104,136 +114,162 @@ public class SistemaCongresso {
 
     int opcao;
     do {
-      opcao =
-          Integer.parseInt(
-              JOptionPane.showInputDialog(
-                  """
-                  Escolha uma opção:
-                  1 - Adicionar fornecedor
-                  2 - Listar fornecedores
-                  3 - remover fornecedor
-                  0 - Sair
-                  """));
-      switch (opcao) {
-        case 1:
-          congresso.adicionarFornecedor(cadastrarFornecedor());
-          break;
-        case 2:
-          congresso.listarFornecedores();
-          break;
-        case 3:
-          congresso.removerFornecedorPorNome(
-              JOptionPane.showInputDialog("Informe o nome do fornecedor:"));
-        case 0:
-          JOptionPane.showMessageDialog(null, "Saindo do cadastro de congresso...");
-          break;
-        default:
-          JOptionPane.showMessageDialog(null, "Opção inválida!");
-      }
-    } while (opcao != 0);
-  }
-
-  private static void cadastrarAtividade() {
-    String tipo = "";
-    while (tipo.isBlank() || tipo == null) {
-      tipo = JOptionPane.showInputDialog("Informe o tipo da atividade:");
-    }
-
-    String data = "";
-    while (data.isBlank() || data == null) {
-      data = JOptionPane.showInputDialog("Informe a data da atividade:");
-    }
-
-    String local = "";
-    while (local.isBlank() || local == null) {
-      local = JOptionPane.showInputDialog("Informe o local da atividade:");
-    }
-
-    Integer qtdParticipantes = null;
-    while (qtdParticipantes <= 0 || qtdParticipantes == null) {
-      qtdParticipantes =
-          Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de participantes:"));
-    }
-
-    int tipoAtividade =
-        Integer.parseInt(
+        opcao = Integer.parseInt(
             JOptionPane.showInputDialog(
                 """
                 Escolha uma opção:
-                1 - Palestra
-                2 - Painel de Discussão
-                3 - Workshop
-                4 - Networking
-                """));
-
-    Atividade atividade = null;
-
-    if (tipoAtividade == 1) {
-      atividade = new Palestra(tipo, data, local, qtdParticipantes);
-    }
-    if (tipoAtividade == 2) {
-      atividade = new PainelDiscussao(tipo, data, local, qtdParticipantes);
-    }
-    if (tipoAtividade == 3) {
-      atividade = new Workshop(tipo, data, local, qtdParticipantes);
-    }
-    if (tipoAtividade == 4) {
-      atividade = new Networking(tipo, data, local, qtdParticipantes);
-    }
-
-    int opcao;
-    do {
-      opcao =
-          Integer.parseInt(
-              JOptionPane.showInputDialog(
-                  """
-                  Escolha uma opção:
-                  1 - Adicionar profissional
-                  2 - Listar profissionais
-                  0 - Sair
-                  """));
-      switch (opcao) {
-        case 1:
-          adicionarProfissional(atividade);
-          break;
-        case 2:
-          listarProfissionais(atividade);
-          break;
-        case 0:
-          JOptionPane.showMessageDialog(null, "Saindo do cadastro de atividade...");
-          break;
-        default:
-          JOptionPane.showMessageDialog(null, "Opção inválida!");
-      }
+                1 - Adicionar fornecedor
+                2 - Listar fornecedores
+                3 - Remover fornecedor
+                0 - Sair
+                """
+            )
+        );
+        switch (opcao) {
+            case 1:
+                congresso.adicionarFornecedor(cadastrarFornecedor());
+                break;
+            case 2:
+                congresso.listarFornecedores();
+                break;
+            case 3:
+                congresso.removerFornecedorPorNome(
+                    JOptionPane.showInputDialog("Informe o nome do fornecedor:")
+                );
+                break; 
+            case 0:
+                JOptionPane.showMessageDialog(null, "Saindo do cadastro de congresso...");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção inválida!");
+        }
     } while (opcao != 0);
+}
 
-    JOptionPane.showMessageDialog(null, "Atividade cadastrada com sucesso!");
+
+private static void cadastrarAtividade() {
+  String tipo = "";
+  while (tipo.isBlank()) {
+      tipo = JOptionPane.showInputDialog("Informe o tipo da atividade:");
   }
 
-  private static void adicionarProfissional(Atividade atividade) {
-    Profissional profissional = cadastrarProfissional();
-
-    atividade.adicionarProfissional(profissional);
-    JOptionPane.showMessageDialog(null, "Profissional adicionado com sucesso!");
+  String data = "";
+  while (data.isBlank()) {
+      data = JOptionPane.showInputDialog("Informe a data da atividade:");
   }
 
-  private static void listarProfissionais(Atividade atividade) {
-    String papel = "";
-    while (papel.isBlank() || papel == null) {
-      papel = JOptionPane.showInputDialog("Informe o papel do profissional:");
-    }
+  String local = "";
+  while (local.isBlank()) {
+      local = JOptionPane.showInputDialog("Informe o local da atividade:");
+  }
 
-    List<PessoaFisica> profissionaisFiltrados = atividade.filtrarProfissionaisPorPapel(papel);
-    if (profissionaisFiltrados.isEmpty()) {
-      JOptionPane.showMessageDialog(null, "Nenhum profissional encontrado com o papel informado!");
-    } else {
-      String listaProfissionais = "Profissionais com o papel " + papel + ":\n";
-      for (PessoaFisica profissional : profissionaisFiltrados) {
-        listaProfissionais += profissional.getNome() + "\n";
+  Integer qtdParticipantes = null;
+  while (qtdParticipantes == null || qtdParticipantes <= 0) {
+      try {
+          qtdParticipantes = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de participantes:"));
+      } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(null, "Por favor, insira um número válido para a quantidade de participantes.");
       }
-      JOptionPane.showMessageDialog(null, listaProfissionais);
-    }
   }
+
+  int tipoAtividade = 0;
+  while (tipoAtividade < 1 || tipoAtividade > 4) {
+      try {
+          tipoAtividade = Integer.parseInt(JOptionPane.showInputDialog(
+              """
+              Escolha uma opção:
+              1 - Palestra
+              2 - Painel de Discussão
+              3 - Workshop
+              4 - Networking
+              """));
+      } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+      }
+  }
+
+  Atividade atividade = null;
+
+  switch (tipoAtividade) {
+      case 1:
+          atividade = new Palestra(tipo, data, local, qtdParticipantes);
+          break;
+      case 2:
+          atividade = new PainelDiscussao(tipo, data, local, qtdParticipantes);
+          break;
+      case 3:
+          atividade = new Workshop(tipo, data, local, qtdParticipantes);
+          break;
+      case 4:
+          atividade = new Networking(tipo, data, local, qtdParticipantes);
+          break;
+      default:
+          JOptionPane.showMessageDialog(null, "Opção inválida. A atividade não foi criada.");
+          return;  
+  }
+
+  int opcao;
+  do {
+      opcao = Integer.parseInt(JOptionPane.showInputDialog(
+          """
+          Escolha uma opção:
+          1 - Adicionar profissional
+          2 - Listar profissionais
+          0 - Sair
+          """));
+      
+      switch (opcao) {
+          case 1:
+              adicionarProfissional(atividade);
+              break;
+          case 2:
+              listarProfissionais(atividade);
+              break;
+          case 0:
+              JOptionPane.showMessageDialog(null, "Saindo do cadastro de atividade...");
+              break;
+          default:
+              JOptionPane.showMessageDialog(null, "Opção inválida!");
+      }
+  } while (opcao != 0);
+
+  JOptionPane.showMessageDialog(null, "Atividade cadastrada com sucesso!");
+}
+
+
+private static void adicionarProfissional(Atividade atividade) {
+  Profissional profissional = cadastrarProfissional();
+
+  if (profissional != null) {
+      atividade.adicionarProfissional(profissional);
+      JOptionPane.showMessageDialog(null, "Profissional adicionado com sucesso!");
+  } else {
+      JOptionPane.showMessageDialog(null, "Não foi possível adicionar o profissional.");
+  }
+}
+
+private static void listarProfissionais(Atividade atividade) {
+  String papel = "";
+  while (papel.isBlank()) {
+      papel = JOptionPane.showInputDialog("Informe o papel do profissional:");
+      if (papel == null) {
+          JOptionPane.showMessageDialog(null, "Operação cancelada.");
+          return; 
+      }
+  }
+
+  List<PessoaFisica> profissionaisFiltrados = atividade.filtrarProfissionaisPorPapel(papel);
+  if (profissionaisFiltrados.isEmpty()) {
+      JOptionPane.showMessageDialog(null, "Nenhum profissional encontrado com o papel informado!");
+  } else {
+      StringBuilder listaProfissionais = new StringBuilder("Profissionais com o papel " + papel + ":\n");
+      for (PessoaFisica profissional : profissionaisFiltrados) {
+          listaProfissionais.append(profissional.getNome()).append("\n");
+      }
+      JOptionPane.showMessageDialog(null, listaProfissionais.toString());
+  }
+}
+
 
   private static Profissional cadastrarProfissional() {
     String nome = "";
