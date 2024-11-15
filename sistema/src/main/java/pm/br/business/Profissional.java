@@ -8,8 +8,8 @@ public class Profissional extends PessoaFisica {
 
   public Profissional(String nome, String cpf, String papel, String alocacaoTempo) {
     super(nome, cpf);
-    this.papel = papel;
-    this.alocacaoTempo = alocacaoTempo;
+    this.setPapel(papel);
+    this.setAlocacaoTempo(alocacaoTempo);
   }
 
   @Override
@@ -23,10 +23,16 @@ public class Profissional extends PessoaFisica {
   }
 
   public void setPapel(String papel) {
+    if (papel == null || papel.isEmpty()) {
+      throw new IllegalArgumentException("O papel do profissional não pode ser nulo ou vazio.");
+    }
     this.papel = papel;
   }
 
   public void setAlocacaoTempo(String alocacaoTempo) {
+    if (alocacaoTempo == null || alocacaoTempo.isEmpty()) {
+      throw new IllegalArgumentException("O tempo de alocação não pode ser nulo ou vazio.");
+    }
     this.alocacaoTempo = alocacaoTempo;
   }
 

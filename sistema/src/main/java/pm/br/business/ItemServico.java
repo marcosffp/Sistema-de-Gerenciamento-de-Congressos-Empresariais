@@ -1,50 +1,55 @@
 package pm.br.business;
 
 public abstract class ItemServico {
-    private String tipo;
-    private int quantidade;
-    private String descricao;
+  private String tipo;
+  private int quantidade;
+  private String descricao;
 
-    public ItemServico(String tipo, int quantidade, String descricao) {
-        this.setTipo(tipo);
-        this.setQuantidade(quantidade);
-        this.setDescricao(descricao);
+  public ItemServico(String tipo, int quantidade, String descricao) {
+    setTipo(tipo);
+    setQuantidade(quantidade);
+    setDescricao(descricao);
+  }
+
+  public String getTipo() {
+    return tipo;
+  }
+
+  public void setTipo(String tipo) {
+    if (tipo == null || tipo.isEmpty()) {
+      throw new IllegalArgumentException("Tipo do serviço não pode ser nulo ou vazio.");
     }
+    this.tipo = tipo;
+  }
 
-    public abstract Double calcularCustoTotal();
+  public int getQuantidade() {
+    return quantidade;
+  }
 
-    public String getTipo() {
-        return tipo;
+  public void setQuantidade(int quantidade) {
+    if (quantidade < 0) {
+      throw new IllegalArgumentException("Quantidade não pode ser negativa.");
     }
+    this.quantidade = quantidade;
+  }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
+  public String getDescricao() {
+    return descricao;
+  }
 
-    public abstract Double getCusto();
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
 
-    public String getDescricao() {
-        return descricao;
-    }
+  public abstract double calcularCustoTotal();
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Tipo: ").append(this.getTipo()).append("\n");
-        sb.append("Quantidade: ").append(this.getQuantidade()).append("\n");
-        sb.append("Descricao: ").append(this.getDescricao()).append("\n");
-        return sb.toString();
-    }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ItemServico: ");
+    sb.append("tipo=").append(tipo);
+    sb.append(", quantidade=").append(quantidade);
+    sb.append(", descricao=").append(descricao);
+    return sb.toString();
+  }
 }

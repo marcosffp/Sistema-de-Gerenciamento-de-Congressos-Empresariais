@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pm.br</groupId>
-    <artifactId>sistema</artifactId>
+    <artifactId>sistema_gerado_llms</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

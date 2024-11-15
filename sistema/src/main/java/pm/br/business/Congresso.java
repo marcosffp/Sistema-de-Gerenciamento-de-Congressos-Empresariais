@@ -124,6 +124,18 @@ public class Congresso {
     return new ArrayList<>(atividades);
   }
 
+  public List<Atividade> filtrarAtividadesPorData(String data) {
+    return atividades.stream()
+        .filter(a -> a.getData().equals(data))
+        .toList();
+  }
+  
+  public List<PessoaJuridica> filtrarFornecedoresPorTipoDeServico(String tipo) {
+    return fornecedores.stream()
+        .filter(f -> f.getTipoServico().equalsIgnoreCase(tipo))
+        .toList();
+  }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();

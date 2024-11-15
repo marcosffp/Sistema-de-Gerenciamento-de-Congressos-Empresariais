@@ -3,24 +3,23 @@ package pm.br.business;
 import java.time.LocalDate;
 
 public class Atribuicao {
-
     private LocalDate dataAtribuicao;
-    private int cargaHoraria;
+    private double cargaHoraria;
     private PessoaFisica profissional;
     private Atividade atividade;
 
-    public Atribuicao(LocalDate dataAtribuicao, int cargaHoraria, PessoaFisica profissional, Atividade atividade) {
-        this.setDataAtribuicao(dataAtribuicao);
-        this.setCargaHoraria(cargaHoraria);
-        this.setProfissional(profissional);
-        this.setAtividade(atividade);
+    public Atribuicao(LocalDate dataAtribuicao, double cargaHoraria, PessoaFisica profissional, Atividade atividade) {
+        setDataAtribuicao(dataAtribuicao);
+        setCargaHoraria(cargaHoraria);
+        setProfissional(profissional);
+        setAtividade(atividade);
     }
 
     public LocalDate getDataAtribuicao() {
         return dataAtribuicao;
     }
 
-    public int getCargaHoraria() {
+    public double getCargaHoraria() {
         return cargaHoraria;
     }
 
@@ -32,32 +31,44 @@ public class Atribuicao {
         return atividade;
     }
 
+
     public void setDataAtribuicao(LocalDate dataAtribuicao) {
+        if (dataAtribuicao == null) {
+            throw new IllegalArgumentException("A data de atribuição não pode ser nula.");
+        }
         this.dataAtribuicao = dataAtribuicao;
     }
 
-    public void setCargaHoraria(int cargaHoraria) {
+    public void setCargaHoraria(double cargaHoraria) {
+        if (cargaHoraria <= 0) {
+            throw new IllegalArgumentException("A carga horária deve ser positiva.");
+        }
         this.cargaHoraria = cargaHoraria;
     }
 
     public void setProfissional(PessoaFisica profissional) {
+        if (profissional == null) {
+            throw new IllegalArgumentException("O profissional não pode ser nulo.");
+        }
         this.profissional = profissional;
     }
 
     public void setAtividade(Atividade atividade) {
+        if (atividade == null) {
+            throw new IllegalArgumentException("A atividade não pode ser nula.");
+        }
         this.atividade = atividade;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Data de atribuicao: ").append(this.getDataAtribuicao()).append("\n");
-        sb.append("Carga horaria: ").append(this.getCargaHoraria()).append("\n");
-        sb.append("Profissional: ").append(this.getProfissional().getNome()).append("\n");
-        sb.append("Atividade: ").append(this.getAtividade().getDescricao()).append("\n");
+        sb.append("Atribuição{");
+        sb.append("dataAtribuicao=").append(dataAtribuicao);
+        sb.append(", cargaHoraria=").append(cargaHoraria);
+        sb.append(", profissional=").append(profissional);
+        sb.append(", atividade=").append(atividade);
+        sb.append('}');
         return sb.toString();
     }
-
-
-
 }

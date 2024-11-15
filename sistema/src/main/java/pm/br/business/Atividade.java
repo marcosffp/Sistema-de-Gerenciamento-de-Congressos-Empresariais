@@ -20,13 +20,16 @@ public abstract class Atividade {
   }
 
   public void setDescricao(String descricao) {
+    if (descricao == null || descricao.isBlank()) {
+      throw new IllegalArgumentException("Descricao nao pode ser nula ou vazia");      
+    }
     this.descricao = descricao;
   }
 
   public String getDescricao() {
     return descricao;
   }
-  
+
   public String getData() {
     return data;
   }
@@ -40,14 +43,23 @@ public abstract class Atividade {
   }
 
   public void setData(String data) {
+    if (data == null || data.isBlank()) {
+      throw new IllegalArgumentException("Data nao pode ser nula ou vazia");      
+    }
     this.data = data;
   }
 
   public void setLocal(String local) {
+    if (local == null || local.isBlank()) {
+      throw new IllegalArgumentException("Local nao pode ser nulo ou vazio");      
+    }
     this.local = local;
   }
 
   public void setQtdParticipantes(int qtdParticipantes) {
+    if (qtdParticipantes < 0) {
+      throw new IllegalArgumentException("Quantidade de participantes nao pode ser negativa");      
+    }
     this.qtdParticipantes = qtdParticipantes;
   }
 
