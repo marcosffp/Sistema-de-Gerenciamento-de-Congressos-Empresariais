@@ -30,6 +30,8 @@ Especificação das classes e seus atributos
 
 
 Gerou:
+```java
+
 public abstract class ItemServico {
     protected String tipo;
     protected int quantidade;
@@ -48,6 +50,7 @@ public class Alimentacao extends ItemServico {
         // Cálculo do custo total considerando fatores como número de pessoas, tipo de refeição, etc.
     }
 }
+```
 
 
 
@@ -73,6 +76,8 @@ Especificações de Refinamento e Feedback ao LLM
 
 
 Gerou:
+```java
+
 public abstract class ItemServico {
     private String tipo;
     private int quantidade;
@@ -129,6 +134,7 @@ public abstract class ItemServico {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -163,6 +169,7 @@ Métodos e funcionalidades de cada classe
 
 
 Gerou:
+```java
 public class ItemAudiovisual extends ItemServico {
     private String equipamento;
     private double precoUnitario;
@@ -188,6 +195,7 @@ public class ItemAudiovisual extends ItemServico {
         // ... implementação detalhada, incluindo informações sobre o equipamento, preço unitário e moeda ...
     }
 }
+```
 
 
 
@@ -207,6 +215,7 @@ Especificações de Refinamento e Feedback ao LLM
 
 
 Gerou:
+```java
 public class ItemAudiovisual extends ItemServico {
     private String equipamento;
     private double precoUnitario;
@@ -258,6 +267,7 @@ public class ItemAudiovisual extends ItemServico {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -292,6 +302,7 @@ Relações entre as Classes:
 
 
 Gerou:
+```java
 public class ItemCatering extends ItemServico {
     private String tipoAlimento;
     private double precoPorPessoa;
@@ -323,6 +334,7 @@ public class ItemCatering extends ItemServico {
         // ... implementação detalhada, incluindo informações sobre o tipo de alimento, preço por pessoa e moeda ...
     }
 }
+```
 
 
 
@@ -346,6 +358,7 @@ Especificações de Refinamento e Feedback ao LLM
    - Implementação do Método `calcularCustoTotal()`: Deve multiplicar `precoPorPessoa` por `quantidade` para calcular o custo total do serviço.
    - Método `toString()` Detalhado: A saída do método `toString()` deve formatar todos os atributos principais, incluindo `tipoAlimento` e `precoPorPessoa`, em uma estrutura intuitiva para facilitar a leitura.
 
+```java
 public class ItemCatering extends ItemServico {
     private String tipoAlimento;
     private double precoPorPessoa;
@@ -397,6 +410,7 @@ public class ItemCatering extends ItemServico {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -443,6 +457,7 @@ Funcionalidades a serem implementadas
 
 
 Gerou:
+```java
 public class PacoteServico {
     private String nome;
     private String descricao;
@@ -487,6 +502,7 @@ public class PacoteServico {
         // ... implementação detalhada, incluindo informações sobre o pacote e seus itens ...
     }
 }
+```
 
 
 Prompt para Iteração e Refinamento do Código:
@@ -517,6 +533,7 @@ Especificações de Refinamento e Feedback ao LLM
 
 
 Gerou:
+```java
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -572,6 +589,7 @@ public class PacoteServico {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -607,6 +625,7 @@ Métodos e funcionalidades de cada classe:
 
 
 Gerou:
+```java
 public interface CalculadoraDeCusto {
     double calcularCustoTotal(List<ItemServico> itens);
 
@@ -637,6 +656,7 @@ public class ImplCalculadoraDeCusto implements CalculadoraDeCusto {
         // ... implementação para calcular o custo médio por item ...
     }
 }
+```
 
 
 
@@ -663,6 +683,7 @@ Estrutura Geral do Código
 
 
 Gerou:
+```java
 public interface CalculadoraDeCusto {
     float calcularCustoTotal(List<ItemServico> itens);
 }
@@ -681,6 +702,7 @@ public class ImplCalculadoraDeCusto implements CalculadoraDeCusto {
                             .reduce(0, (double a, double b) -> Math.addExact(a, b));
     }
 }
+```
 
 
 
@@ -706,6 +728,7 @@ Relações entre as classes:
 
 
 Gerou:
+```java
 public abstract class Pessoa {
     private String nome;
 
@@ -716,6 +739,7 @@ public abstract class Pessoa {
         return "Nome: " + nome;
     }
 }
+```
 
 public class Endereco {
     private String rua;
@@ -742,6 +766,7 @@ Especificações de Refinamento e Feedback ao LLM:
 
 
 Gerou:
+```java
 public abstract class Pessoa {
     private String nome;
 
@@ -767,6 +792,7 @@ public abstract class Pessoa {
         return sb.toString();
     }
 }
+```
 
 public class PessoaFisica extends Pessoa {
     private String cpf;
@@ -809,6 +835,7 @@ Relações entre as classes:
 
 
 Gerou:
+```java
 public enum Papel {
     COORDENADOR, FORNECEDOR, PARTICIPANTE
 }
@@ -841,7 +868,7 @@ public interface PessoaComFuncao {
     Papel getPapel();
     AlocacaoTempo getAlocacaoTempo();
 }
-
+```
 
 
 Prompt para Iteração e Refinamento do Código:
@@ -858,6 +885,7 @@ Estrutura Geral do Código para Classes Especializadas
 
 
 Gerou:
+```java
 public abstract class PessoaFisica extends Pessoa {
     private String cpf;
 
@@ -884,7 +912,7 @@ public abstract class PessoaFisica extends Pessoa {
     public abstract String getPapel();
     public abstract String getAlocacaoTempo();
 }
-
+```
 
 
 08-Prompt-PessoaJuridica 
@@ -917,6 +945,7 @@ Relações entre as classes:
 
 
 Gerou:
+```java
 public abstract class PessoaJuridica extends Pessoa {
     private String cnpj;
 
@@ -942,7 +971,7 @@ public abstract class PessoaJuridica extends Pessoa {
 
     public abstract String getTipoServico();
 }
-
+```
 
 
 Prompt para Iteração e Refinamento do Código:
@@ -958,6 +987,7 @@ Estrutura Geral do Código para Classes Especializadas
 
 
 Gerou:
+```java
 public class PessoaJuridica extends Pessoa {
     private String cnpj;
     private String razaoSocial;
@@ -983,6 +1013,7 @@ public class PessoaJuridica extends Pessoa {
         return "Não especificado";
     }
 }
+```
 
 
 
@@ -1017,6 +1048,7 @@ O método `toString()` é sobrescrito para fornecer uma descrição detalhada do
 
 
 Gerou:
+```java
 public class Profissional extends PessoaFisica {
     private String papel;
     private String alocacaoTempo;
@@ -1053,6 +1085,7 @@ public class Profissional extends PessoaFisica {
                 '}';
     }
 }
+```
 
 
 
@@ -1074,7 +1107,8 @@ Especificações de Refinamento e Feedback ao LLM
 
 
 
-Gerou: 
+Gerou:
+```java 
 public class Profissional extends PessoaFisica {
     private String papel;
     private String alocacaoTempo;
@@ -1119,6 +1153,7 @@ public class Profissional extends PessoaFisica {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -1184,6 +1219,7 @@ Relações entre as classes:
 
 
 Gerou:
+```java
 public interface Calculavel {
     double calcularCustoTotal();
 }
@@ -1201,7 +1237,7 @@ public class Fornecedor {
     private List<PacoteServico<ItemServico>> pacotesServico;
     // ...
 }
-
+```
 
 
 Prompt para Iteração e Refinamento do Código:
@@ -1231,6 +1267,7 @@ A classe `Fornecedor` se baseia em uma classe `PessoaJuridica`, o que implica qu
 
 
 Gerou:
+```java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -1305,6 +1342,7 @@ public class Fornecedor extends PessoaJuridica {
     return sb.toString();
   }
 }
+```
 
 
 
@@ -1348,6 +1386,7 @@ Funcionalidades do sistema:
 
 
 Gerou:
+```java
 public class Atribuicao {
     private LocalDate dataAtribuicao;
     private double cargaHoraria; // Em horas
@@ -1366,6 +1405,7 @@ public class Atribuicao {
         PENDENTE, CONFIRMADA, CANCELADA
     }
 }
+```
 
 Prompt para Iteração e Refinamento do Código:
 
@@ -1383,6 +1423,7 @@ Especificações de Refinamento e Feedback ao LLM
 
 
 Gerou:
+```java
 import java.time.LocalDate;
 
 public class Atribuicao {
@@ -1456,6 +1497,7 @@ public class Atribuicao {
         return sb.toString();
     }
 }
+```
 
 
 12-Prompt-Atividade
@@ -1496,6 +1538,7 @@ Métodos e funcionalidades de cada classe:
 
 
 Gerou:
+```java
 import java.time.LocalDate;
 import java.util.List;
 
@@ -1516,7 +1559,7 @@ public abstract class Atividade {
 
     // ... métodos para adicionar, remover e filtrar profissionais e itens de serviço ...
 }
-
+```
 
 
 Prompt para Iteração e Refinamento do Código:
@@ -1544,6 +1587,7 @@ Especificações de Refinamento e Feedback ao LLM
 
 
 Gerou:
+```java
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -1596,6 +1640,7 @@ public abstract class Atividade {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -1648,6 +1693,7 @@ Relações entre as classes
 
 
 Gerou:
+```java
 public abstract class Atividade {
     // ... atributos e métodos comuns ...
 
@@ -1666,7 +1712,7 @@ public class Workshop extends Atividade {
 }
 
 // ... outras subclasses ...
-
+```
 
 
 Prompt para Iteração e Refinamento do Código:
@@ -1685,6 +1731,7 @@ Para manter consistência entre as subclasses, a classe `Atividade` deve fornece
 
 
 Gerou:
+```java
 public class Workshop extends Atividade {
     public Workshop(String descricao, LocalDate data, String local, int qtdParticipantes) {
         super(descricao, data, local, qtdParticipantes);
@@ -1695,6 +1742,7 @@ public class Workshop extends Atividade {
         return "Workshop";
     }
 }
+```
 
 
 
@@ -1739,6 +1787,7 @@ Relações entre as classes
 
 
 Gerou:
+```java
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -1775,6 +1824,7 @@ public class Congresso {
         return sb.toString();
     }
 }
+```
 
 
 
@@ -1797,6 +1847,7 @@ A classe `Congresso` deve fornecer uma base sólida para a manipulação de ativ
 
 
 Gerou:
+```java
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -1860,3 +1911,4 @@ public class Congresso {
         return sb.toString();
     }
 }
+```
