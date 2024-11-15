@@ -1,0 +1,591 @@
+01-Prompt-ItemServico
+Descrição do problema:
+O objetivo é desenvolver um sistema de gerenciamento para congressos empresariais, permitindo que uma empresa organizadora de eventos administre com eficiência diversos aspectos de um congresso, como clientes, fornecedores, atividades, equipes e controle financeiro. O sistema deve centralizar e automatizar essas informações, minimizando erros e melhorando a produtividade.
+
+Especificação das classes e seus atributos:
+1. **Classe ItemServico** (classe base)
+   - **Atributos:**
+     - `tipo` (String): Tipo do serviço (exemplo: Audiovisual, Catering).
+     - `custo` (float): Custo do item de serviço.
+     - `quantidade` (int): Quantidade de unidades do serviço.
+     - `descricao` (String): Descrição detalhada do item de serviço.
+   - **Métodos:**
+     - `calcularCustoTotal()`: Método que calcula o custo total do item, multiplicando o custo pelo número de unidades.
+     - `toString()`: Método que retorna uma representação textual do objeto, incluindo tipo, custo e descrição.
+
+2. **Classe ItemAudiovisual** (herda de ItemServico)
+   - Atributos:
+     - `equipamento` (String): Descrição do equipamento audiovisual.
+     - `precoUnitario` (float): Preço unitário do equipamento audiovisual.
+   - Métodos:
+     - `calcularCustoTotal()`: Método que calcula o custo total com base na quantidade de equipamentos e seu preço unitário.
+     - `toString()`: Método que retorna uma representação textual do item audiovisual, incluindo os detalhes do equipamento e o custo total.
+
+3. Classe ItemCatering** (herda de ItemServico)
+   - Atributos:
+     - `tipoAlimento` (String): Tipo de alimento fornecido (exemplo: buffet, refeição individual).
+     - `precoPorPessoa` (float): Preço do item por pessoa.
+   - Métodos:
+     - `calcularCustoTotal()`: Método que calcula o custo total com base no número de pessoas e o preço por pessoa.
+     - `toString()`: Método que retorna uma representação textual do item de catering, incluindo o tipo de alimento e o custo total.
+
+Relações entre as classes:
+- A classe `ItemAudiovisual` e `ItemCatering` são subclasses da classe abstrata `ItemServico`.
+- Ambas as subclasses herdam os atributos e métodos de `ItemServico`, mas implementam suas próprias versões do método `calcularCustoTotal()` e `toString()` de acordo com o tipo específico de serviço.
+
+Métodos e funcionalidades de cada classe:
+- Classe `ItemServico`:
+  - `calcularCustoTotal()`: Retorna o custo total baseado nos atributos `custo` e `quantidade`.
+  - `toString()`: Retorna uma string formatada que descreve o item de serviço.
+  
+- Classe `ItemAudiovisual`:
+  - `calcularCustoTotal()`: Calcula o custo total do item audiovisual com base no `precoUnitario` e na quantidade.
+  - `toString()`: Retorna uma string formatada que descreve o equipamento audiovisual.
+
+- Classe `ItemCatering`:
+  - `calcularCustoTotal()`: Calcula o custo total do serviço de catering com base no `precoPorPessoa` e no número de pessoas.
+  - `toString()`: Retorna uma string formatada que descreve o serviço de catering.
+
+Gerou:
+
+public interface Servico {
+    double calcularCustoTotal();
+    String getDescricao();
+}
+
+public abstract class ItemServico implements Servico {
+    protected String tipo;
+    protected double custo;
+    protected int quantidade;
+    protected LocalDate data; // Adicionado para registrar a data do serviço
+
+    // ... construtores e getters/setters ...
+
+    @Override
+    public double calcularCustoTotal() {
+        return custo * quantidade;
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Tipo: " + tipo + ", Custo: " + custo + ", Quantidade: " + quantidade + ", Data: " + data;
+    }
+}
+
+public class ItemAudiovisual extends ItemServico {
+    private String equipamento;
+    private double precoUnitario;
+
+    // ... construtores e getters/setters ...
+
+    @Override
+    public double calcularCustoTotal() {
+        // ... implementação específica ...
+    }
+
+    @Override
+    public String getDescricao() {
+        // ... implementação específica ...
+    }
+}
+
+public class ItemCatering extends ItemServico {
+    private String tipoAlimento;
+    private double precoPorPessoa;
+
+    // ... construtores e getters/setters ...
+
+    @Override
+    public double calcularCustoTotal() {
+        // ... implementação específica ...
+    }
+
+    @Override
+    public String getDescricao() {
+        // ... implementação específica ...
+    }
+}
+
+Prompt para Iteração e Refinamento do Código:
+
+O sistema de gerenciamento de congressos empresariais está sendo desenvolvido com foco na gestão de pacotes de serviços, que inclui a implementação de itens de serviço. Em vez de usar uma interface `Servico`, queremos que o código siga a estrutura de uma classe abstrata `ItemServico` que será estendida por classes específicas para diferentes tipos de serviços, como `ItemCatering` e `ItemAudiovisual`.
+
+O objetivo agora é refinar a implementação, garantindo que os cálculos de custo e a manipulação de dados sejam realizados de forma eficiente, atendendo à estrutura de classe descrita.
+
+Especificação Refinada das Classes e Atributos:
+
+1.Classe `ItemServico` (classe abstrata):
+   - Atributos:
+     - `tipo` (String): Tipo do serviço (ex: "alimentação", "audiovisual").
+     - `quantidade` (int): Quantidade do item de serviço.
+     - `descricao` (String): Descrição do item de serviço.
+   - Métodos:
+     - `calcularCustoTotal()` (Double): Método abstrato para calcular o custo total, que será implementado nas subclasses.
+     - `getCusto()` (Double): Método abstrato para retornar o custo de um item específico (implementado nas subclasses).
+     - `getTipo()` (String): Retorna o tipo do item de serviço.
+     - `getDescricao()` (String): Retorna a descrição do item de serviço.
+     - `setTipo(String tipo)`, `setQuantidade(int quantidade)`, `setDescricao(String descricao)`: Métodos setters para atributos.
+     - `toString()` (String): Método que gera uma representação em string do item de serviço, incluindo tipo, quantidade e descrição.
+
+2. Classe `ItemCatering`** (subclasse de `ItemServico`):
+   - Atributos:
+     - `tipoAlimento` (String): Tipo de alimento fornecido.
+     - `precoPorPessoa` (Double): Preço por pessoa para o item de catering.
+   - Métodos:     - `calcularCustoTotal()` (Double): Implementação específica do cálculo de custo total para o item de catering, que multiplica o preço por pessoa pela quantidade.
+     - `getCusto()` (Double): Retorna o preço por pessoa como custo.
+     - `toString()` (String): Gera a representação do item de catering, incluindo o tipo de alimento e preço por pessoa.
+
+3. Classe `ItemAudiovisual` (subclasse de `ItemServico`):
+   - Atributos:
+     - `equipamento` (String): Tipo de equipamento utilizado.
+     - `precoUnitario` (Double): Preço unitário do equipamento.
+   - Métodos:     - `calcularCustoTotal()` (Double): Implementação específica do cálculo de custo total para o item audiovisual, multiplicando o preço unitário pela quantidade.
+     - `getCusto()` (Double): Retorna o preço unitário como custo.
+     - `toString()` (String): Gera a representação do item audiovisual, incluindo equipamento e preço unitário.
+
+Relações entre as Classes:
+- Herança: A classe `ItemServico` é abstrata e serve como base para as classes `ItemCatering` e `ItemAudiovisual`, que implementam a lógica específica de cálculo de custo.
+- **Métodos Abstratos e Concretos:** Os métodos `calcularCustoTotal()` e `getCusto()` são abstratos em `ItemServico` e implementados nas subclasses.
+
+Iteração e Refinamento:
+
+1. Objetivo Inicial: As classes foram geradas com base na estrutura descrita, mas alguns pontos de refinamento são necessários:
+   - A lógica de cálculo de custo precisa ser mais clara e específica para cada tipo de serviço.
+   - O método `toString()` deve ser melhorado para incluir todas as informações relevantes de forma legível.
+   - A estrutura do sistema precisa garantir que novos tipos de serviços possam ser adicionados facilmente no futuro.
+
+2. Feedback e Refinamento:
+   - Revise a implementação do cálculo de custo para garantir que todos os custos sejam calculados corretamente com base nos atributos.
+   - Adicione exemplos de uso ou testes para verificar a implementação e fazer ajustes nos métodos conforme necessário.
+   - Certifique-se de que o código seja modular e fácil de manter, com cada classe responsável por uma parte específica da lógica de serviço.
+
+
+
+Gerou
+
+public abstract class ItemServico {
+    private String tipo;
+    private int quantidade;
+    private String descricao;
+
+    // ... construtores e getters/setters ...
+
+    public abstract double calcularCustoTotal();
+
+    public abstract double getCusto();
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemServico{" +
+                "tipo='" + tipo + '\'' +
+                ", quantidade=" + quantidade +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
+}
+
+public class ItemCatering extends ItemServico {
+    private double precoPorPessoa;
+
+    // ... construtores e getters/setters ...
+
+    @Override
+    public double calcularCustoTotal() {
+        return precoPorPessoa * quantidade;
+    }
+
+    @Override
+    public double getCusto() {
+        return precoPorPessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemCatering{" +
+                "tipo='" + getTipo() + '\'' +
+                ", quantidade=" + getQuantidade() +
+                ", descricao='" + getDescricao() + '\'' +
+                ", precoPorPessoa=" + precoPorPessoa +
+                '}';
+    }
+}
+
+public class ItemAudiovisual extends ItemServico {
+    private double precoUnitario;
+
+    // ... construtores e getters/setters ...
+
+    @Override
+    public double calcularCustoTotal() {
+        return precoUnitario * quantidade;
+    }
+
+    @Override
+    public double getCusto() {
+        return precoUnitario;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemAudiovisual{" +
+                "tipo='" + getTipo() + '\'' +
+                ", quantidade=" + getQuantidade() +
+                ", descricao='" + getDescricao() + '\'' +
+                ", precoUnitario=" + precoUnitario +
+                '}';
+    }
+
+
+
+
+02-Prompt-PacoteServico
+
+Descrição do problema:
+O sistema de gerenciamento de congressos empresariais visa automatizar e centralizar o gerenciamento de diversos aspectos de eventos corporativos, como cadastro de clientes, fornecedores, pacotes de serviços, programação de atividades e gestão de equipe. O problema a ser resolvido é a dispersão e a manipulação manual das informações, que dificultam a organização eficiente e aumentam o risco de inconsistências. A solução proposta deve integrar esses dados e permitir um gerenciamento ágil e flexível.
+
+Especificação das classes e seus atributos:
+
+1. Classe `PacoteServico`
+   - Atributos:
+     - `nome: String` – Nome do pacote de serviço.
+     - `descricao: String` – Descrição do pacote.
+     - `itensServico: List<ItemServico>` – Lista de itens de serviço associados ao pacote.
+   
+   - Métodos:
+     - `calcularCustoTotal(): float` – Método para calcular o custo total do pacote somando o custo de todos os itens de serviço.
+     - `ordenarItensPorCusto(): List<ItemServico>` – Ordena os itens de serviço do pacote pelo custo.
+     - `filtrarItensPorTipo(tipo: String): List<ItemServico>` – Filtra os itens de serviço por tipo.
+     - `toString(): String` – Retorna uma representação em string do pacote de serviço, incluindo seu nome, descrição e custo total.
+
+2. Classe `ItemServico`
+   - Atributos:
+     - `nome: String` – Nome do item de serviço.
+     - `tipo: String` – Tipo do item (ex: alimentação, transporte, etc.).
+     - `custo: float` – Custo do item de serviço.
+
+3. Interface `CalculadoraDeCusto`
+   - Métodos:
+     - `calcularCusto(pacotesServico: List<PacoteServico>): float` – Método que calcula o custo total de uma lista de pacotes de serviço, somando o custo de todos os pacotes e seus itens.
+
+4. Classe `ImplCalculadoraDeCusto`
+   - Métodos:
+     - Implementa o método da interface `CalculadoraDeCusto` para calcular o custo total de pacotes de serviço, iterando sobre a lista de pacotes e somando o custo de cada item.
+
+Relações entre as classes:
+- Composição: A classe `PacoteServico` tem uma lista de `ItemServico`, representando que um pacote de serviço é composto por diversos itens.
+- Interface: A interface `CalculadoraDeCusto` define um contrato para o cálculo do custo, sendo implementado pela classe `ImplCalculadoraDeCusto`.
+
+Métodos e funcionalidades de cada classe:
+1. `PacoteServico`
+   - `calcularCustoTotal()`: Retorna o custo total de um pacote, calculado pela soma do custo de todos os itens de serviço.
+   - `ordenarItensPorCusto()`: Ordena os itens dentro de um pacote de serviço com base no custo, retornando a lista ordenada.
+   - `filtrarItensPorTipo(tipo: String)`: Filtra os itens dentro de um pacote de serviço de acordo com o tipo de serviço especificado (como "alimentação", "transporte", etc.).
+   - `toString()`: Exibe uma string com o nome, descrição e custo total do pacote de serviço.
+
+2. `ItemServico`
+   - O principal propósito dessa classe é representar os itens dentro dos pacotes de serviço, com atributos para nome, tipo e custo.
+
+3. `CalculadoraDeCusto`(Interface)
+   - Define o método `calcularCusto()`, que deverá ser implementado para calcular o custo total de uma lista de pacotes de serviço.
+
+4. `ImplCalculadoraDeCusto`
+   - Implementa o método `calcularCusto()`, percorrendo a lista de pacotes e somando o custo total de todos os pacotes e seus itens.
+
+
+
+Gerou:
+
+import java.util.List;
+
+public class PacoteServico {
+    private String nome;
+    private String descricao;
+    private List<ItemServico> itensServico;
+
+    // ... construtores, getters e setters ...
+
+    public float calcularCustoTotal() {
+        // Lógica para calcular o custo total
+    }
+
+    // ... outros métodos ...
+}
+
+public class ItemServico {
+    private String nome;
+    private String tipo;
+    private float custo;
+
+    // ... construtores, getters e setters ...
+}
+
+
+Prompt para Iteração e Refinamento do Código:
+
+O sistema de gerenciamento de pacotes de serviços para congressos empresariais está sendo desenvolvido com foco na manipulação e cálculo de custos de diferentes tipos de itens de serviço dentro de um pacote. Em vez de usar uma classe única para todos os itens, queremos garantir que a implementação seja modular, permitindo que novos tipos de itens possam ser facilmente adicionados e os custos sejam calculados corretamente com base nas características de cada item.
+
+A estrutura do sistema envolve uma classe `PacoteServico`, que gerencia uma lista de `ItemServico`, e o cálculo de custos, que deve ser realizado de forma eficiente, utilizando a interface `CalculadoraDeCusto`.
+
+ Especificação Refinada das Classes e Atributos
+
+Iteração e Refinamento:
+
+1. Objetivo Inicial:
+   - A lógica para o cálculo do custo foi inicialmente implementada de forma genérica, mas agora precisa ser refinada para garantir que cada tipo de item de serviço tenha seu próprio cálculo específico, baseado em seus atributos únicos (como quantidade e tipo de serviço).
+   
+2. Refinamento Requerido:
+   - Melhorar o método `calcularCustoTotal()` para que a lógica de cálculo seja clara e eficiente, considerando diferentes tipos de serviços.
+   - Melhorar o método `toString()` para garantir que ele forneça informações legíveis e completas sobre o pacote e os itens.
+   - Garantir que a estrutura seja modular, permitindo que novos tipos de serviço sejam facilmente integrados ao sistema, como `ItemCatering`, `ItemAudiovisual`, entre outros.
+
+3. Feedback e Ajustes:
+   - Verificar a implementação do cálculo de custo para garantir que está funcionando corretamente para os diferentes tipos de `ItemServico`.
+   - Adicionar testes para validar a lógica de cálculo e a filtragem/ordenação de itens dentro do pacote.
+   - Assegurar que o código seja de fácil manutenção e expansão, com cada classe tendo responsabilidades bem definidas.
+
+
+Gerou:
+
+public abstract class ItemServico {
+    protected String nome;
+    protected String tipo;
+
+    public abstract double calcularCusto();
+}
+
+public class ItemAlimentacao extends ItemServico {
+    private int quantidadePessoas;
+    private double precoPorPessoa;
+
+    @Override
+    public double calcularCusto() {
+        return quantidadePessoas * precoPorPessoa;
+    }
+}
+
+public class ItemAudiovisual extends ItemServico {
+    private int horas;
+    private double taxaHoraria;
+
+    @Override
+    public double calcularCusto() {
+        return horas * taxaHoraria;
+    }
+}
+
+public interface ItemServicoFactory {
+    ItemServico criarItem(String tipo, Map<String, Object> dados);
+}
+
+public class PacoteServico {
+    private List<ItemServico> itensServico;
+    private ItemServicoFactory factory;
+
+    // ... construtores e getters/setters ...
+
+    public double calcularCustoTotal() {
+        double custoTotal = 0;
+        for (ItemServico item : itensServico) {
+            custoTotal += item.calcularCusto();
+        }
+        return custoTotal;
+    }
+}
+
+
+03-Prompt-Pessoa
+
+
+
+Descrição do Problema:
+O sistema de gerenciamento de congressos empresariais deve permitir que empresas organizadoras gerenciem diversos aspectos de um evento corporativo, incluindo o cadastro e a gestão de clientes, fornecedores, atividades, equipe de coordenação e controle financeiro. As informações de clientes e fornecedores precisam ser bem organizadas, pois são elementos chave para o sucesso do evento. Além disso, o sistema precisa suportar a personalização e a automação para otimizar o gerenciamento dos congressos e minimizar erros logísticos.
+
+Especificação das Classes e seus Atributos:
+
+1. Classe `Pessoa`** (Classe Abstrata)
+   - Atributos:
+     - `nome: String`
+   - Métodos:
+     - `toString(): String` (Método abstrato que deve ser implementado nas subclasses)
+
+2. Classe `PessoaFisica`(Herda de `Pessoa`)
+   - Atributos:
+     - `cpf: String`
+   - Métodos:
+     - `getTipoServico(): String` (Método que retorna o tipo de serviço da pessoa física)
+     - `toString(): String` (Implementação do método `toString` da classe `Pessoa`)
+
+3. Classe `PessoaJuridica` (Herda de `Pessoa`)
+   - Atributos:
+     - `cnpj: String`
+   - Métodos:
+     - `getPapel(): String` (Método que retorna o papel do fornecedor)
+     - `getAlocacaoTempo(): String` (Método que retorna o tempo de alocação do fornecedor)
+     - `toString(): String` (Implementação do método `toString` da classe `Pessoa`)
+
+Relações entre as Classes:
+- A classe `PessoaFisica` e a classe `PessoaJuridica` herdam de `Pessoa`, formando uma hierarquia com uma classe base abstrata.
+- A classe `PessoaFisica` representa indivíduos profissionais, enquanto `PessoaJuridica` representa fornecedores de serviços corporativos.
+
+Métodos e Funcionalidades de Cada Classe:
+- Classe `Pessoa`:
+  - `toString()`: Método abstrato que deve ser implementado nas subclasses para gerar uma representação personalizada do objeto.
+  
+- Classe `PessoaFisica`:
+  - `getTipoServico()`: Método que retorna o tipo de serviço fornecido pela pessoa física (ex.: palestrante, coordenador de atividades, etc.).
+  - `toString()`: Implementação do método `toString` que retorna as informações da pessoa física, como nome e CPF.
+
+- Classe `PessoaJuridica`:
+  - `getPapel()`: Método que retorna o papel do fornecedor (ex.: catering, audiovisual, segurança).
+  - `getAlocacaoTempo()`: Método que retorna a quantidade de tempo alocada para o fornecedor no evento (ex.: 4 horas, 8 horas, etc.).
+  - `toString()`: Implementação do método `toString` que retorna as informações da pessoa jurídica, como nome e CNPJ.
+
+
+
+
+
+Gerou:
+public abstract class Pessoa {
+    protected String nome;
+    protected Contato contato;
+    protected Endereco endereco;
+
+    // ... construtores, getters e setters ...
+}
+
+public class PessoaFisica extends Pessoa {
+    private String cpf;
+    private Date dataNascimento;
+    private String areaAtuacao;
+
+    // ... construtores, getters e setters ...
+}
+
+public class PessoaJuridica extends Pessoa {
+    private String cnpj;
+    private String ramoAtuacao;
+    private String site;
+
+    // ... construtores, getters e setters ...
+}
+
+public class Cliente extends PessoaFisica {
+    private List<Evento> eventos;
+}
+
+public class Fornecedor extends PessoaJuridica {
+    private List<Evento> eventos;
+}
+
+public class Evento {
+    private String nome;
+    private Date dataInicio;
+    private Date dataFim;
+    private List<PessoaFisica> participantes;
+    private List<Fornecedor> fornecedores;
+    private List<Atividade> atividades;
+}
+
+
+Prompt para Iteração e Refinamento do Código:
+
+O sistema de gestão de pessoas foi projetado para representar diferentes tipos de pessoas, como `PessoaFisica` e `PessoaJuridica`, além de classes derivadas para representar clientes e fornecedores. Porém, precisamos refinar a estrutura do código para melhorar a organização, a clareza e garantir que as funcionalidades sejam implementadas de forma mais eficiente.
+
+Objetivo:
+Refinar a implementação, organizando as classes de maneira clara, garantindo que a herança seja bem aplicada, e ajustando os métodos `toString()` para fornecer uma visão mais completa das entidades. Também queremos que o código seja facilmente extensível para suportar futuras implementações de diferentes tipos de pessoas ou de eventos.
+
+Especificação Refinada das Classes e Atributos:
+1. **Classe `Pessoa`** (classe abstrata):
+   - Atributos:
+     - `nome` (String): Nome da pessoa.
+   - Métodos:
+     - `getNome()` (String): Retorna o nome da pessoa.
+     - `setNome(String nome)`: Define o nome da pessoa.
+     - `toString()` (String): Método que gera uma representação da pessoa, incluindo seu nome.
+
+2. Classe `PessoaFisica` (subclasse de `Pessoa`):
+   - Atributos:
+     - `cpf` (String): CPF da pessoa física.
+   - Métodos:
+     - `getCpf()` (String): Retorna o CPF.
+     - `setCpf(String cpf)`: Define o CPF.
+     - `toString()` (String): Gera a representação da pessoa física, incluindo o CPF.
+     - **Métodos abstratos**:
+       - `getPapel()`: Retorna o papel dessa pessoa na organização.
+       - `getAlocacaoTempo()`: Retorna a alocação de tempo dessa pessoa.
+
+3. Classe `PessoaJuridica` (subclasse de `Pessoa`):
+   - Atributos:
+     - `cnpj` (String): CNPJ da pessoa jurídica.
+   - Métodos:
+     - `getCnpj()` (String): Retorna o CNPJ.
+     - `setCnpj(String cnpj)`: Define o CNPJ.
+     - `toString()` (String): Gera a representação da pessoa jurídica, incluindo o CNPJ.
+     - **Método abstrato**:
+       - `getTipoServico()`: Retorna o tipo de serviço prestado pela pessoa jurídica.
+
+4. Classe `Cliente` (subclasse de `PessoaFisica`):
+   - Atributos:
+     - `eventos` (List<Evento>): Lista de eventos associados ao cliente.
+   - Métodos:
+     - `getEventos()`: Retorna os eventos do cliente.
+     - `setEventos(List<Evento> eventos)`: Define os eventos do cliente.
+
+
+Iteração e Refinamento:
+
+1. Objetivo Inicial: O código foi gerado com base na estrutura fornecida, mas precisa de refinamentos, especialmente para os métodos `toString()`, que devem incluir todas as informações relevantes, e na clareza de como as subclasses de `Pessoa` se comportam em relação aos métodos abstratos.
+
+2. **Feedback e Refinamento:**
+   - Reestruturar a classe `Pessoa` e suas subclasses, ajustando os métodos para refletir corretamente as funcionalidades de cada tipo de pessoa (cliente, fornecedor, etc.).
+   - Melhorar os métodos `toString()` para garantir que todas as informações importantes sejam incluídas de forma legível.
+   - Implementar os métodos abstratos `getPapel()`e `getAlocacaoTempo()` de forma mais clara e específica para cada classe.
+   - Verificar como os eventos estão sendo manipulados dentro das classes `Cliente` e `Fornecedor` para garantir que o sistema de eventos seja eficiente.
+
+
+
+public class Pessoa {
+    protected String nome;
+    protected Contato contato;
+    protected Endereco endereco;
+
+    // ... construtores, getters e setters ...
+}
+
+public enum Papel {
+    PALESTRANTE, PARTICIPANTE, ORGANIZADOR
+}
+
+public class PessoaFisica extends Pessoa {
+    private String cpf;
+    private Date dataNascimento;
+    private Papel papel;
+
+    // ... construtores, getters e setters ...
+
+    @Override
+    public Papel getPapel() {
+        return papel;
+    }
+}
+
+public class Cliente extends PessoaFisica {
+    private List<Evento> eventos;
+
+    // ... construtores, getters e setters ...
+}
+
+
+
