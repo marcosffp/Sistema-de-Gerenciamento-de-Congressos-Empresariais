@@ -1,21 +1,11 @@
 package pm.br.business;
 
-import java.util.Date;
-
-public class PessoaFisica extends Pessoa {
+public abstract class PessoaFisica extends Pessoa {
   private String cpf;
-  private Date dataNascimento;
-  private Papel papel;
 
-  public PessoaFisica(String nome, String endereco, String contato, String cpf, Date dataNascimento, Papel papel) {
-    super(nome, contato, endereco);
+  public PessoaFisica(String nome, String cpf) {
+    super(nome);
     this.cpf = cpf;
-    this.dataNascimento = dataNascimento;
-    this.papel = papel;
-  }
-
-  public Papel getPapel() {
-    return papel;
   }
 
   public String getCpf() {
@@ -26,27 +16,14 @@ public class PessoaFisica extends Pessoa {
     this.cpf = cpf;
   }
 
-  public Date getDataNascimento() {
-    return dataNascimento;
-  }
-
-  public void setDataNascimento(Date dataNascimento) {
-    this.dataNascimento = dataNascimento;
-  }
-
-  public void setPapel(Papel papel) {
-    this.papel = papel;
-  }
-
   @Override
   public String toString() {
-    return "PessoaFisica{" +
-        "nome='" + nome + '\'' +
-        ", contato='" + contato + '\'' +
-        ", endereco='" + endereco + '\'' +
-        ", cpf='" + cpf + '\'' +
-        ", dataNascimento=" + dataNascimento +
-        ", papel=" + papel +
-        '}';
+    StringBuilder sb = new StringBuilder();
+    sb.append("CPF: ").append(this.cpf);
+    return sb.toString();
   }
+
+  public abstract String getPapel();
+
+  public abstract String getAlocacaoTempo();
 }

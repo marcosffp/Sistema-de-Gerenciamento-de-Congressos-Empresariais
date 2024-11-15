@@ -5,46 +5,51 @@ public abstract class ItemServico {
   private int quantidade;
   private String descricao;
 
-  public abstract double calcularCustoTotal();
-
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
-  }
-
-  public void setQuantidade(int quantidade) {
-    this.quantidade = quantidade;
-  }
-
-  public void setDescricao(String descricao) {
-    this.descricao = descricao;
-  }
-
   public ItemServico(String tipo, int quantidade, String descricao) {
-    this.tipo = tipo;
-    this.quantidade = quantidade;
-    this.descricao = descricao;
+    setTipo(tipo);
+    setQuantidade(quantidade);
+    setDescricao(descricao);
   }
-
-  public abstract double getCusto();
 
   public String getTipo() {
     return tipo;
+  }
+
+  public void setTipo(String tipo) {
+    if (tipo == null || tipo.isEmpty()) {
+      throw new IllegalArgumentException("Tipo do serviço não pode ser nulo ou vazio.");
+    }
+    this.tipo = tipo;
   }
 
   public int getQuantidade() {
     return quantidade;
   }
 
+  public void setQuantidade(int quantidade) {
+    if (quantidade < 0) {
+      throw new IllegalArgumentException("Quantidade não pode ser negativa.");
+    }
+    this.quantidade = quantidade;
+  }
+
   public String getDescricao() {
     return descricao;
   }
 
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
+
+  public abstract double calcularCustoTotal();
+
   @Override
   public String toString() {
-    return "ItemServico{" +
-        "tipo='" + tipo + '\'' +
-        ", quantidade=" + quantidade +
-        ", descricao='" + descricao + '\'' +
-        '}';
+    StringBuilder sb = new StringBuilder();
+    sb.append("ItemServico: ");
+    sb.append("tipo=").append(tipo);
+    sb.append(", quantidade=").append(quantidade);
+    sb.append(", descricao=").append(descricao);
+    return sb.toString();
   }
 }

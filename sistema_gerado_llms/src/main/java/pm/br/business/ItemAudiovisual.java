@@ -1,31 +1,25 @@
 package pm.br.business;
 
 public class ItemAudiovisual extends ItemServico {
+  private String equipamento;
   private double precoUnitario;
 
-  @Override
-  public double calcularCustoTotal() {
-    return precoUnitario * getQuantidade();
-  }
-
-  public ItemAudiovisual(String tipo, int quantidade, String descricao, double precoUnitario) {
+  public ItemAudiovisual(String tipo, int quantidade, String descricao,
+      String equipamento, double precoUnitario) {
     super(tipo, quantidade, descricao);
-    this.precoUnitario = precoUnitario;
+    setEquipamento(equipamento);
+    setPrecoUnitario(precoUnitario);
   }
 
-  @Override
-  public double getCusto() {
-    return precoUnitario;
+  public String getEquipamento() {
+    return equipamento;
   }
 
-  @Override
-  public String toString() {
-    return "ItemAudiovisual{" +
-        "tipo='" + getTipo() + '\'' +
-        ", quantidade=" + getQuantidade() +
-        ", descricao='" + getDescricao() + '\'' +
-        ", precoUnitario=" + precoUnitario +
-        '}';
+  public void setEquipamento(String equipamento) {
+    if (equipamento == null || equipamento.isEmpty()) {
+      throw new IllegalArgumentException("O nome do equipamento não pode ser nulo ou vazio.");
+    }
+    this.equipamento = equipamento;
   }
 
   public double getPrecoUnitario() {
@@ -33,6 +27,25 @@ public class ItemAudiovisual extends ItemServico {
   }
 
   public void setPrecoUnitario(double precoUnitario) {
+    if (precoUnitario <= 0) {
+      throw new IllegalArgumentException("O preço unitário deve ser positivo.");
+    }
     this.precoUnitario = precoUnitario;
+  }
+
+  @Override
+  public double calcularCustoTotal() {
+    return this.getQuantidade() * precoUnitario;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("ItemAudiovisual: ");
+    sb.append("tipo=").append(getTipo());
+    sb.append(", quantidade=").append(getQuantidade());
+    sb.append(", equipamento=").append(getEquipamento());
+    sb.append(", preço unitário=").append(getPrecoUnitario());
+    return sb.toString();
   }
 }
