@@ -142,7 +142,7 @@ private static int mostrarMenu() {
             JOptionPane.showInputDialog("Informe o nome do fornecedor:"));
         break;
       case 4:
-        Atividade atividade = cadastrarAtividade(); // Método para cadastrar atividades
+        Atividade atividade = cadastrarAtividade();
         congresso.adicionarAtividade(atividade);
         break;
       case 5:
