@@ -69,7 +69,7 @@ public abstract class Atividade {
 
   public List<PessoaFisica> filtrarProfissionaisPorPapel(String papel) {
     return profissionais.stream()
-        .filter(profissional -> profissional.getPapel().equals(papel))
+        .filter(profissional -> profissional.getPapel().trim().equalsIgnoreCase(papel.trim()))
         .toList();
   }
 

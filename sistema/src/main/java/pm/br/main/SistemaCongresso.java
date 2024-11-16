@@ -18,9 +18,12 @@ import pm.br.business.Profissional;
 import pm.br.business.Workshop;
 
 /**
- * The SistemaCongresso class is the main class for managing a conference system. It provides
- * methods for registering conferences, activities, professionals, suppliers, and service packages.
- * It also allows calculating the total cost of a service package and listing activities.
+ * The SistemaCongresso class is the main class for managing a conference
+ * system. It provides
+ * methods for registering conferences, activities, professionals, suppliers,
+ * and service packages.
+ * It also allows calculating the total cost of a service package and listing
+ * activities.
  */
 public class SistemaCongresso {
 
@@ -33,42 +36,41 @@ public class SistemaCongresso {
   public static void main(String[] args) {
     int opcao;
     do {
-        opcao = mostrarMenu();
-        switch (opcao) {
-            case 1:
-                cadastrarCongresso();
-                break;
-            case 2:
-                cadastrarAtividade();
-                break;
-            case 3:
-                cadastrarProfissional();
-                break;
-            case 4:
-                cadastrarFornecedor();
-                break;
-            case 5:
-                cadastrarPacoteServico();
-                break;
-            case 6:
-                calcularCustoTotalPacote();
-                break;
-            case 7:
-                listarAtividades();
-                break;
-            case 0:
-                JOptionPane.showMessageDialog(null, "Saindo do sistema...");
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Opção inválida!");
-                break;
-        }
+      opcao = mostrarMenu();
+      switch (opcao) {
+        case 1:
+          cadastrarCongresso();
+          break;
+        case 2:
+          cadastrarAtividade();
+          break;
+        case 3:
+          cadastrarProfissional();
+          break;
+        case 4:
+          cadastrarFornecedor();
+          break;
+        case 5:
+          cadastrarPacoteServico();
+          break;
+        case 6:
+          calcularCustoTotalPacote();
+          break;
+        case 7:
+          listarAtividades();
+          break;
+        case 0:
+          JOptionPane.showMessageDialog(null, "Saindo do sistema...");
+          break;
+        default:
+          JOptionPane.showMessageDialog(null, "Opção inválida!");
+          break;
+      }
     } while (opcao != 0);
-}
+  }
 
-private static int mostrarMenu() {
-    String menu =
-        """
+  private static int mostrarMenu() {
+    String menu = """
         Escolha uma opção:
         1 - Cadastrar Congresso
         2 - Cadastrar Atividade
@@ -81,222 +83,187 @@ private static int mostrarMenu() {
         """;
     String input = JOptionPane.showInputDialog(menu);
     if (input == null) {
-        return 0; 
+      return 0;
     }
     return Integer.parseInt(input);
-}
+  }
 
   private static void cadastrarCongresso() {
-  String setor = "";
-  while (setor.isBlank() || setor == null) {
-    setor = JOptionPane.showInputDialog("Informe o setor do congresso:");
-  }
+    String setor = "";
+    while (setor.isBlank() || setor == null) {
+      setor = JOptionPane.showInputDialog("Informe o setor do congresso:");
+    }
 
-  Float valorContratado = null;
-  while (valorContratado == null || valorContratado <= 0 || Float.isNaN(valorContratado)) {
-    try {
-      valorContratado = Float.parseFloat(
-          JOptionPane.showInputDialog("Informe o valor contratado (deve ser maior que zero):"));
-      if (valorContratado <= 0) {
-        JOptionPane.showMessageDialog(null, "O valor deve ser maior que zero. Tente novamente.");
+    Float valorContratado = null;
+    while (valorContratado == null || valorContratado <= 0 || Float.isNaN(valorContratado)) {
+      try {
+        valorContratado = Float.parseFloat(
+            JOptionPane.showInputDialog("Informe o valor contratado (deve ser maior que zero):"));
+        if (valorContratado <= 0) {
+          JOptionPane.showMessageDialog(null, "O valor deve ser maior que zero. Tente novamente.");
+          valorContratado = null;
+        }
+      } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
         valorContratado = null;
       }
-    } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
-      valorContratado = null;
     }
-  }
 
-  String especificacoes = "";
-  while (especificacoes.isBlank() || especificacoes == null) {
-    especificacoes = JOptionPane.showInputDialog("Informe as especificações:");
-  }
+    String especificacoes = "";
+    while (especificacoes.isBlank() || especificacoes == null) {
+      especificacoes = JOptionPane.showInputDialog("Informe as especificações:");
+    }
 
-  Congresso congresso = new Congresso(setor, valorContratado, especificacoes);
-  congressos.add(congresso);
-  JOptionPane.showMessageDialog(null, "Congresso cadastrado com sucesso!");
+    Congresso congresso = new Congresso(setor, valorContratado, especificacoes);
+    congressos.add(congresso);
+    JOptionPane.showMessageDialog(null, "Congresso cadastrado com sucesso!");
 
-  int opcao;
-  do {
-    opcao = Integer.parseInt(
-        JOptionPane.showInputDialog(
-            """
-                Escolha uma opção:
-                1 - Adicionar fornecedor
-                2 - Listar fornecedores
-                3 - Remover fornecedor
-                4 - Adicionar atividade
-                5 - Listar atividades
-                6 - Filtrar atividades por data
-                0 - Sair
-                """));
-    switch (opcao) {
-      case 1:
-        congresso.adicionarFornecedor(cadastrarFornecedor());
-        break;
-      case 2:
-        congresso.listarFornecedores();
-        break;
-      case 3:
-        congresso.removerFornecedorPorNome(
-            JOptionPane.showInputDialog("Informe o nome do fornecedor:"));
-        break;
-      case 4:
-        Atividade atividade = cadastrarAtividade();
-        congresso.adicionarAtividade(atividade);
-        break;
-      case 5:
-        congresso.listarAtividades();
-        break;
-      case 6:
-        String dataFiltro = JOptionPane.showInputDialog("Informe a data para filtrar as atividades:");
-        List<Atividade> atividadesFiltradas = congresso.filtrarAtividadesPorData(dataFiltro);
-        if (atividadesFiltradas.isEmpty()) {
-          JOptionPane.showMessageDialog(null, "Nenhuma atividade encontrada para a data informada.");
-        } else {
-          StringBuilder atividadesList = new StringBuilder("Atividades filtradas:\n");
-          for (Atividade a : atividadesFiltradas) {
-            atividadesList.append(a.getDescricao()).append("\n");
+    int opcao;
+    do {
+      opcao = Integer.parseInt(
+          JOptionPane.showInputDialog(
+              """
+                  Escolha uma opção:
+                  1 - Adicionar fornecedor
+                  2 - Listar fornecedores
+                  3 - Remover fornecedor
+                  4 - Adicionar atividade
+                  5 - Listar atividades
+                  6 - Filtrar atividades por data
+                  0 - Sair
+                  """));
+      switch (opcao) {
+        case 1:
+          congresso.adicionarFornecedor(cadastrarFornecedor());
+          break;
+        case 2:
+          congresso.listarFornecedores();
+          break;
+        case 3:
+          congresso.removerFornecedorPorNome(
+              JOptionPane.showInputDialog("Informe o nome do fornecedor:"));
+          break;
+        case 4:
+          Atividade atividade = cadastrarAtividade();
+          congresso.adicionarAtividade(atividade);
+          break;
+        case 5:
+          congresso.listarAtividades();
+          break;
+        case 6:
+          String dataFiltro = JOptionPane.showInputDialog("Informe a data para filtrar as atividades:");
+          List<Atividade> atividadesFiltradas = congresso.filtrarAtividadesPorData(dataFiltro);
+          if (atividadesFiltradas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma atividade encontrada para a data informada.");
+          } else {
+            StringBuilder atividadesList = new StringBuilder("Atividades filtradas:\n");
+            for (Atividade a : atividadesFiltradas) {
+              atividadesList.append(a.getDescricao()).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, atividadesList.toString());
           }
-          JOptionPane.showMessageDialog(null, atividadesList.toString());
-        }
-        break;
-      case 0:
-        JOptionPane.showMessageDialog(null, "Saindo do cadastro de congresso...");
-        break;
-      default:
-        JOptionPane.showMessageDialog(null, "Opção inválida!");
-    }
-  } while (opcao != 0);
-}
+          break;
+        case 0:
+          JOptionPane.showMessageDialog(null, "Saindo do cadastro de congresso...");
+          break;
+        default:
+          JOptionPane.showMessageDialog(null, "Opção inválida!");
+      }
+    } while (opcao != 0);
+  }
 
   private static Atividade cadastrarAtividade() {
-  String tipo = "";
-  while (tipo.isBlank()) {
-    tipo = JOptionPane.showInputDialog("Informe o tipo da atividade:");
-  }
-
-  String data = "";
-  while (data.isBlank()) {
-    data = JOptionPane.showInputDialog("Informe a data da atividade:");
-  }
-
-  String local = "";
-  while (local.isBlank()) {
-    local = JOptionPane.showInputDialog("Informe o local da atividade:");
-  }
-
-  Integer qtdParticipantes = null;
-  while (qtdParticipantes == null || qtdParticipantes <= 0) {
-    try {
-      qtdParticipantes = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de participantes:"));
-    } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Por favor, insira um número válido para a quantidade de participantes.");
+    String tipo = "";
+    while (tipo.isBlank()) {
+      tipo = JOptionPane.showInputDialog("Informe o tipo da atividade:");
     }
-  }
 
-  int tipoAtividade = 0;
-  while (tipoAtividade < 1 || tipoAtividade > 4) {
-    try {
-      tipoAtividade = Integer.parseInt(JOptionPane.showInputDialog(
-          """
-              Escolha uma opção:
-              1 - Palestra
-              2 - Painel de Discussão
-              3 - Workshop
-              4 - Networking
-              """));
-    } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+    String data = "";
+    while (data.isBlank()) {
+      data = JOptionPane.showInputDialog("Informe a data da atividade:");
     }
-  }
 
-  Atividade atividade = null;
+    String local = "";
+    while (local.isBlank()) {
+      local = JOptionPane.showInputDialog("Informe o local da atividade:");
+    }
 
-  switch (tipoAtividade) {
-    case 1:
-      atividade = new Palestra(tipo, data, local, qtdParticipantes);
-      break;
-    case 2:
-      atividade = new PainelDiscussao(tipo, data, local, qtdParticipantes);
-      break;
-    case 3:
-      atividade = new Workshop(tipo, data, local, qtdParticipantes);
-      break;
-    case 4:
-      atividade = new Networking(tipo, data, local, qtdParticipantes);
-      break;
-    default:
-      JOptionPane.showMessageDialog(null, "Opção inválida. A atividade não foi criada.");
-      return null;
-  }
+    Integer qtdParticipantes = null;
+    while (qtdParticipantes == null || qtdParticipantes <= 0) {
+      try {
+        qtdParticipantes = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de participantes:"));
+      } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Por favor, insira um número válido para a quantidade de participantes.");
+      }
+    }
 
-  // Adicionando a atividade à lista
-  atividades.add(atividade);
+    int tipoAtividade = 0;
+    while (tipoAtividade < 1 || tipoAtividade > 4) {
+      try {
+        tipoAtividade = Integer.parseInt(JOptionPane.showInputDialog(
+            """
+                Escolha uma opção:
+                1 - Palestra
+                2 - Painel de Discussão
+                3 - Workshop
+                4 - Networking
+                """));
+      } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+      }
+    }
 
-  int opcao;
-  do {
-    opcao = Integer.parseInt(JOptionPane.showInputDialog(
-        """
-            Escolha uma opção:
-            1 - Adicionar profissional
-            2 - Listar profissionais
-            0 - Sair
-            """));
+    Atividade atividade = null;
 
-    switch (opcao) {
+    switch (tipoAtividade) {
       case 1:
-        adicionarProfissional(atividade);
+        atividade = new Palestra(tipo, data, local, qtdParticipantes);
         break;
       case 2:
-        listarProfissionais(atividade);
+        atividade = new PainelDiscussao(tipo, data, local, qtdParticipantes);
         break;
-      case 0:
-        JOptionPane.showMessageDialog(null, "Saindo do cadastro de atividade...");
+      case 3:
+        atividade = new Workshop(tipo, data, local, qtdParticipantes);
+        break;
+      case 4:
+        atividade = new Networking(tipo, data, local, qtdParticipantes);
         break;
       default:
-        JOptionPane.showMessageDialog(null, "Opção inválida!");
+        JOptionPane.showMessageDialog(null, "Opção inválida. A atividade não foi criada.");
+        return null;
     }
-  } while (opcao != 0);
 
-  JOptionPane.showMessageDialog(null, "Atividade cadastrada com sucesso!");
-  return atividade;
-}
-    
+    // Adicionando a atividade à lista
+    atividades.add(atividade);
 
-private static void adicionarProfissional(Atividade atividade) {
-  Profissional profissional = cadastrarProfissional();
+    int opcao;
+    do {
+      opcao = Integer.parseInt(JOptionPane.showInputDialog(
+          """
+              Escolha uma opção:
+              1 - Adicionar profissional
+              2 - Listar profissionais
+              0 - Sair
+              """));
 
-  if (profissional != null) {
-      atividade.adicionarProfissional(profissional);
-      JOptionPane.showMessageDialog(null, "Profissional adicionado com sucesso!");
-  } else {
-      JOptionPane.showMessageDialog(null, "Não foi possível adicionar o profissional.");
-  }
-}
-
-private static void listarProfissionais(Atividade atividade) {
-  String papel = "";
-  while (papel.isBlank()) {
-      papel = JOptionPane.showInputDialog("Informe o papel do profissional:");
-      if (papel == null) {
-          JOptionPane.showMessageDialog(null, "Operação cancelada.");
-          return; 
+      switch (opcao) {
+        case 1:
+          adicionarProfissional(atividade);
+          break;
+        case 2:
+          listarProfissionais(atividade);
+          break;
+        case 0:
+          JOptionPane.showMessageDialog(null, "Saindo do cadastro de atividade...");
+          break;
+        default:
+          JOptionPane.showMessageDialog(null, "Opção inválida!");
       }
-  }
+    } while (opcao != 0);
 
-  List<PessoaFisica> profissionaisFiltrados = atividade.filtrarProfissionaisPorPapel(papel);
-  if (profissionaisFiltrados.isEmpty()) {
-      JOptionPane.showMessageDialog(null, "Nenhum profissional encontrado com o papel informado!");
-  } else {
-      StringBuilder listaProfissionais = new StringBuilder("Profissionais com o papel " + papel + ":\n");
-      for (PessoaFisica profissional : profissionaisFiltrados) {
-          listaProfissionais.append(profissional.getNome()).append("\n");
-      }
-      JOptionPane.showMessageDialog(null, listaProfissionais.toString());
+    JOptionPane.showMessageDialog(null, "Atividade cadastrada com sucesso!");
+    return atividade;
   }
-}
-
 
   private static Profissional cadastrarProfissional() {
     String nome = "";
@@ -319,10 +286,43 @@ private static void listarProfissionais(Atividade atividade) {
       cpf = JOptionPane.showInputDialog("Informe o CPF do profissional:");
     }
 
-    Profissional profissional = new Profissional(nome, papel, alocacaoTempo, cpf);
+    Profissional profissional = new Profissional(nome,cpf, papel, alocacaoTempo);
     profissionais.add(profissional);
     JOptionPane.showMessageDialog(null, "Profissional cadastrado com sucesso!");
     return profissional;
+  }
+
+  private static void adicionarProfissional(Atividade atividade) {
+    Profissional profissional = cadastrarProfissional();
+
+    if (profissional != null) {
+      atividade.adicionarProfissional(profissional);
+      JOptionPane.showMessageDialog(null, "Profissional adicionado com sucesso!");
+    } else {
+      JOptionPane.showMessageDialog(null, "Não foi possível adicionar o profissional.");
+    }
+  }
+
+  private static void listarProfissionais(Atividade atividade) {
+    String papel = "";
+    while (papel.isBlank()) {
+      papel = JOptionPane.showInputDialog("Informe o papel do profissional:");
+      if (papel == null) {
+        JOptionPane.showMessageDialog(null, "Operação cancelada.");
+        return;
+      }
+    }
+
+    List<PessoaFisica> profissionaisFiltrados = atividade.filtrarProfissionaisPorPapel(papel);
+    if (profissionaisFiltrados.isEmpty()) {
+      JOptionPane.showMessageDialog(null, "Nenhum profissional encontrado com o papel informado!");
+    } else {
+      StringBuilder listaProfissionais = new StringBuilder("Profissionais com o papel " + papel + ":\n");
+      for (PessoaFisica profissional : profissionaisFiltrados) {
+        listaProfissionais.append(profissional.getNome()).append("\n");
+      }
+      JOptionPane.showMessageDialog(null, listaProfissionais.toString());
+    }
   }
 
   private static PessoaJuridica cadastrarFornecedor() {
@@ -347,10 +347,9 @@ private static void listarProfissionais(Atividade atividade) {
     }
 
     JOptionPane.showMessageDialog(null, "Deseja adicionar um pacote de serviço ao fornecedor?");
-    int opcao =
-        Integer.parseInt(
-            JOptionPane.showInputDialog(
-                """
+    int opcao = Integer.parseInt(
+        JOptionPane.showInputDialog(
+            """
                 Escolha uma opção:
                 1 - Sim
                 2 - Não
@@ -390,10 +389,9 @@ private static void listarProfissionais(Atividade atividade) {
 
     int opcao;
     do {
-      opcao =
-          Integer.parseInt(
-              JOptionPane.showInputDialog(
-                  """
+      opcao = Integer.parseInt(
+          JOptionPane.showInputDialog(
+              """
                   Escolha uma opção:
                   1 - Adicionar item de serviço
                   2 - Listar itens de serviço
