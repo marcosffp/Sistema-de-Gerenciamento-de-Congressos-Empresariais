@@ -3,6 +3,8 @@ package pm.br.main;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import pm.br.business.Atividade;
 import pm.br.business.Congresso;
 import pm.br.business.Fornecedor;
@@ -180,7 +182,11 @@ public class SistemaCongresso {
 
     String data = "";
     while (data.isBlank()) {
-      data = JOptionPane.showInputDialog("Informe a data da atividade:");
+      data = JOptionPane.showInputDialog("Informe a data da atividade (dd/MM/yyyy):");
+      if (!isValidDate(data)) {
+        JOptionPane.showMessageDialog(null, "Por favor, insira uma data válida no formato dd/MM/yyyy.");
+        data = "";
+      }
     }
 
     String local = "";
@@ -206,10 +212,10 @@ public class SistemaCongresso {
                 1 - Palestra
                 2 - Painel de Discussão
                 3 - Workshop
-                4 - Networking
+                4 - Mesa Redonda
                 """));
       } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+        JOptionPane.showMessageDialog(null, "Por favor, insira um número válido para o tipo de atividade.");
       }
     }
 
@@ -263,6 +269,17 @@ public class SistemaCongresso {
 
     JOptionPane.showMessageDialog(null, "Atividade cadastrada com sucesso!");
     return atividade;
+  }
+
+  private static boolean isValidDate(String date) {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    sdf.setLenient(false);
+    try {
+      sdf.parse(date);
+      return true;
+    } catch (ParseException e) {
+      return false;
+    }
   }
 
   private static Profissional cadastrarProfissional() {
